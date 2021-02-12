@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="Pl-pl">
+<head>
+    <title>Javascript Game</title>
+    <meta charset="UTF-8">
+    <!-- http://proger.i-forge.net/The_smallest_transparent_pixel/ -->
+    <link rel="icon" href="data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA=">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <img src="/static/images/quiz-2058883.png" alt="quiz-header">
+    <h1>JavaScript Game</h1>
+    <h2>Zapnij pasy, bo czeka Cię ostra jazda bez trzymanki!!!</h2>
+    <menu>
+        <h1 class="main-menu">Menu Główne</h1>
+        <button class="main-btn" id="newGame"><span class="dice rotate">🎲</span> Nowa Gra <span class="dice">🎲</span></button>
+        <div class="lvls-container hidden">
+            <h2 class="choose-lvl-txt">Wybierz poziom:</h2>
+            <div class="levels">
+                <button class="lvl-btn" id="easy">Łatwy</button>
+                <button class="lvl-btn" id="intermediate">Średni</button>
+                <button class="lvl-btn" id="mystic">Mistyczny</button>
+            </div>
+        </div>
+        <button class="main-btn" id="ranking-list">📜 Lista Rankingowa 📜</button>
+    </menu>
+
+{#    <main class="modal hidden">#}
+        {% include "questions.html" %}
+{#    </main>#}
+
+    <div class="blur-background hidden"></div>
+
+    <script type="text/javascript" src="/static/game.js"></script>
+</body>
+</html>
