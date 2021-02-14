@@ -39,8 +39,8 @@ create table ranking
 alter table ranking
     owner to postgres;
 
-INSERT INTO questions (0,'Inside which HTML element do we put the JavaScript?','',1);
-INSERT INTO answers(0,'<javascript>',1,0);
-INSERT INTO answers(1,'<js>',1,0);
-INSERT INTO answers(2,'<scripting>',1,0);
-INSERT INTO answers(3,'<script>',1,1);
+INSERT INTO questions VALUES (0,'Inside which HTML element do we put the JavaScript?','',1);
+INSERT INTO answers VALUES (0,'<javascript>',1,false);
+INSERT INTO answers VALUES (1,'<js>',1,false);
+INSERT INTO answers VALUES (2,'<scripting>',1,false);
+INSERT INTO answers VALUES (3,'<script>',1,true);
