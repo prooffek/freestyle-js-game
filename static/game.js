@@ -6,6 +6,7 @@ const allAnswerBtns = document.querySelectorAll('.answer-btn');
 const lvlBtns = document.querySelectorAll('.lvl-btn');
 const [newGameBtn, rankListBtn] = document.querySelectorAll('button');
 const exitButton = document.querySelector(".exit-btn");
+const allInputsAnswers = document.querySelectorAll('.input-answer')
 
 // containers
 const lvlContainer = document.querySelector('.lvls-container');
@@ -17,6 +18,7 @@ const overMainBtnClass = 'over-main-btn';
 const overLvlBtnClass = 'over-lvl-btn';
 const overExitBtn = 'over-exit-btn';
 const overAnswerBtnClass = 'over-answer-btn';
+const chosenAnswerBtn = 'input-answer:checked + label';
 
 
 // Listen functions
@@ -57,6 +59,14 @@ const blurBackground = function () {
     blurContainer.classList.toggle('hidden');
 }
 
+const chosenAnswer = function (className, arrayName) {
+        for (let i = 0; i < arrayName.length; i++) {
+            arrayName[i].addEventListener("click", function () {
+                arrayName[i].classList.toggle(className)
+            })
+        }
+}
+
 
 // handling buttons
 const btnHandler = function () {
@@ -65,6 +75,7 @@ const btnHandler = function () {
     listenMouseOver(overExitBtn, [exitButton]);
     listenMouseOver(overAnswerBtnClass, allAnswerBtns)
     showHideOnClick(newGameBtn, lvlContainer);
+    chosenAnswer(chosenAnswerBtn, allAnswerBtns)
     for (let i = 0; i < lvlBtns.length; i++) {
         showOnClick(lvlBtns[i], modalContainer);
     }

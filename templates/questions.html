@@ -1,6 +1,6 @@
 {% block questions %}
 
-<main class="modal hidden">
+<main class="modal hidden" xmlns="http://www.w3.org/1999/html">
 
     <div class="exit-btn">
         <button><img src="/static/images/exit-575715.png"></button>
@@ -20,10 +20,19 @@
         </p>
     </div>
     <div class="answers-container">
-        <button class="answer-btn">Button 1</button>
-        <button class="answer-btn">Button 2</button>
-        <button class="answer-btn">Button 3</button>
-        <button class="answer-btn">Button 4</button>
+        <input type="radio" value="Answer-1" id="answer1" class="input-answer" name="answers">
+        <label for="answer1" class="answer-btn">Button 1</label>
+        <input type="radio" value="Answer-2" id="answer2" class="input-answer" name="answers">
+        <label for="answer2" class="answer-btn">Button 2</label>
+        <input type="radio" value="Answer-3" id="answer3" class="input-answer" name="answers">
+        <label for="answer3" class="answer-btn">Button 3</label>
+        <input type="radio" value="Answer-4" id="answer4" class="input-answer" name="answers">
+        <label for="answer4" class="answer-btn">Button 4</label>
+
+
+    </div>
+    <div class="submit-container">
+        <button class="check-btn">Check</button>
     </div>
 </main>
 
