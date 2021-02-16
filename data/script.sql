@@ -39,6 +39,7 @@ create table ranking
 alter table ranking
     owner to postgres;
 
+
 INSERT INTO questions VALUES (1,'Inside which HTML element do we put the JavaScript?','',1);
 INSERT INTO answers VALUES (0,'<script>',1,true);
 INSERT INTO answers VALUES (1,'<js>',1,false);
@@ -56,3 +57,10 @@ INSERT INTO answers VALUES (8,'<script src="xxx.js">',3,true);
 INSERT INTO answers VALUES (9,'<script href="xxx.js">' ,3,false);
 INSERT INTO answers VALUES (10, '<script href="xxx.js">',3,false);
 INSERT INTO answers VALUES (11,'Any of the given syntax is good',3,false);
+
+INSERT INTO questions VALUES (0,'Inside which HTML element do we put the JavaScript?','',1);
+INSERT INTO answers VALUES (0,'<javascript>',0,false);
+INSERT INTO answers VALUES (1,'<js>',0,false);
+INSERT INTO answers VALUES (2,'<scripting>',0,false);
+INSERT INTO answers VALUES (3,'<script>',0,true);
+

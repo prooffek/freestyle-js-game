@@ -238,7 +238,7 @@ menu {
     border: black solid 2px;
 }
 
-.input-answer:checked + label{
+.input-answer:checked+label {
     background-color: aqua;
     border: deepskyblue solid 2px;
     box-shadow: 0 0 1em deepskyblue;

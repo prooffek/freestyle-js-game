@@ -1,5 +1,4 @@
 from flask import Flask, request, render_template, redirect, url_for
-import connection
 import data_manager
 NUMBER_OF_QUESTIONS = 3
 
@@ -9,11 +8,15 @@ app = Flask(__name__)
 if __name__ == "__main__":
     app.run()
 
+lvl1 = data_manager.questions(1)
+
+# lvl1 = [{pytani1}, {pytanie2}, {pytanie3}]
+
 
 @app.route('/')
 def index():
-    all_data = create_list()
-    return render_template("index.html")
+    all_data = create_list() # [{pytanie, dobra odpowiedź, zła odpowiedź1, zła odpowiedź2, zła odpowiedź3},{}....]
+    return render_template("index.html", questions_lvl1=lvl1)
 
 
 def create_list():
@@ -29,5 +32,4 @@ def create_list():
         single_qa["false_answer3"] = answer[3]["answer"]
         single_qa_copy = single_qa.copy()
         all_data.append(single_qa_copy)
-
     return all_data
