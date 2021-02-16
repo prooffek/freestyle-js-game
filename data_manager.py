@@ -23,12 +23,12 @@ import connection
 #     }
 #     cursor.execute(query, param)
 #     return cursor.fetchall()
-
-@connection.connection_handler
-def questions(cursor:RealDictCursor, lvl: int):
-    cursor.execute("""
-        SELECT *
-        FROM questions
-    """)
-    return cursor.fetchall()
+#
+# @connection.connection_handler
+# def questions(cursor:RealDictCursor, lvl: int):
+#     cursor.execute("""
+#         SELECT *
+#         FROM questions
+#     """)
+#     return cursor.fetchall()
 

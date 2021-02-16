@@ -11,18 +11,18 @@
         </div>
         <div class="question">
             <p>
-                {{ questions_lvl1[0].question_content }}
+                {{ questions_lvl1[0].content }}
             </p>
         </div>
-        <div class="answers-container" data-correct-answer="{{ questions_lvl1[0].correct_answer }}">
-            <input type="radio" value="Answer-1" id="answer1" class="input-answer" name="answers">
-            <label for="answer1" class="answer-btn">{{ questions_lvl1[0].correct_answer }}</label>
-            <input type="radio" value="Answer-2" id="answer2" class="input-answer" name="answers">
-            <label for="answer2" class="answer-btn">{{ questions_lvl1[0].false_answer_1 }}</label>
-            <input type="radio" value="Answer-3" id="answer3" class="input-answer" name="answers">
-            <label for="answer3" class="answer-btn">{{ questions_lvl1[0].false_answer_2 }}</label>
-            <input type="radio" value="Answer-4" id="answer4" class="input-answer" name="answers">
-            <label for="answer4" class="answer-btn">{{ questions_lvl1[0].false_answer_3 }}</label>
+        <div class="answers-container" data-correct-answer="{{ questions_lvl1[0].good_answer }}">
+            <input type="radio" value="Answer-1" id="q1-answer1" class="input-answer" name="answers1">
+            <label for="q1-answer1" class="answer-btn">{{ questions_lvl1[0].good_answer }}</label>
+            <input type="radio" value="Answer-2" id="q1-answer2" class="input-answer" name="answers1">
+            <label for="q1-answer2" class="answer-btn">{{ questions_lvl1[0].false_answer1 }}</label>
+            <input type="radio" value="Answer-3" id="q1-answer3" class="input-answer" name="answers1">
+            <label for="q1-answer3" class="answer-btn">{{ questions_lvl1[0].false_answer2 }}</label>
+            <input type="radio" value="Answer-4" id="q1-answer4" class="input-answer" name="answers1">
+            <label for="q1-answer4" class="answer-btn">{{ questions_lvl1[0].false_answer3 }}</label>
         </div>
     </div>
     <div class="question-container hidden" id="2">
@@ -31,18 +31,18 @@
         </div>
         <div class="question">
             <p>
-                {{ questions_lvl1[1].question_content }}
+                {{ questions_lvl1[1].content }}
             </p>
         </div>
-        <div class="answers-container" data-correct-answer="{{ questions_lvl1[1].correct_answer }}">
-            <input type="radio" value="Answer-1" id="answer1" class="input-answer" name="answers">
-            <label for="answer1" class="answer-btn">{{ questions_lvl1[1].correct_answer }}</label>
-            <input type="radio" value="Answer-2" id="answer2" class="input-answer" name="answers">
-            <label for="answer2" class="answer-btn">{{ questions_lvl1[1].false_answer_1 }}</label>
-            <input type="radio" value="Answer-3" id="answer3" class="input-answer" name="answers">
-            <label for="answer3" class="answer-btn">{{ questions_lvl1[1].false_answer_2 }}</label>
-            <input type="radio" value="Answer-4" id="answer4" class="input-answer" name="answers">
-            <label for="answer4" class="answer-btn">{{ questions_lvl1[1].false_answer_3 }}</label>
+        <div class="answers-container" data-correct-answer="{{ questions_lvl1[1].good_answer }}">
+            <input type="radio" value="Answer-1" id="q2-answer1" class="input-answer" name="answers2">
+            <label for="q2-answer1" class="answer-btn">{{ questions_lvl1[1].good_answer }}</label>
+            <input type="radio" value="Answer-2" id="q2-answer2" class="input-answer" name="answers2">
+            <label for="q2-answer2" class="answer-btn">{{ questions_lvl1[1].false_answer1 }}</label>
+            <input type="radio" value="Answer-3" id="q2-answer3" class="input-answer" name="answers2">
+            <label for="q2-answer3" class="answer-btn">{{ questions_lvl1[1].false_answer2 }}</label>
+            <input type="radio" value="Answer-4" id="q2-answer4" class="input-answer" name="answers2">
+            <label for="q2-answer4" class="answer-btn">{{ questions_lvl1[1].false_answer3 }}</label>
         </div>
     </div>
     <div class="question-container hidden" id="3">
@@ -51,18 +51,18 @@
         </div>
         <div class="question">
             <p>
-                {{ questions_lvl1[2].question_content }}
+                {{ questions_lvl1[2].content }}
             </p>
         </div>
-        <div class="answers-container" data-correct-answer="{{ questions_lvl1[2].correct_answer }}">
-            <input type="radio" value="Answer-1" id="answer1" class="input-answer" name="answers">
-            <label for="answer1" class="answer-btn">{{ questions_lvl1[2].correct_answer }}</label>
-            <input type="radio" value="Answer-2" id="answer2" class="input-answer" name="answers">
-            <label for="answer2" class="answer-btn">{{ questions_lvl1[2].false_answer_1 }}</label>
-            <input type="radio" value="Answer-3" id="answer3" class="input-answer" name="answers">
-            <label for="answer3" class="answer-btn">{{ questions_lvl1[2].false_answer_2 }}</label>
-            <input type="radio" value="Answer-4" id="answer4" class="input-answer" name="answers">
-            <label for="answer4" class="answer-btn">{{ questions_lvl1[2].false_answer_3 }}</label>
+        <div class="answers-container" data-correct-answer="{{ questions_lvl1[2].good_answer }}">
+            <input type="radio" value="Answer-1" id="q3-answer1" class="input-answer" name="answers3">
+            <label for="answer1" class="answer-btn">{{ questions_lvl1[2].good_answer }}</label>
+            <input type="radio" value="Answer-2" id="q3-answer2" class="input-answer" name="answers3">
+            <label for="answer2" class="answer-btn">{{ questions_lvl1[2].false_answer1 }}</label>
+            <input type="radio" value="Answer-3" id="q3-answer3" class="input-answer" name="answers3">
+            <label for="answer3" class="answer-btn">{{ questions_lvl1[2].false_answer2 }}</label>
+            <input type="radio" value="Answer-4" id="q3-answer4" class="input-answer" name="answers3">
+            <label for="answer4" class="answer-btn">{{ questions_lvl1[2].false_answer3 }}</label>
         </div>
     </div>
 
