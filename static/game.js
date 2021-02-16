@@ -6,7 +6,9 @@ const allAnswerBtns = document.querySelectorAll('.answer-btn');
 const lvlBtns = document.querySelectorAll('.lvl-btn');
 const [newGameBtn, rankListBtn] = document.querySelectorAll('button');
 const exitButton = document.querySelector(".exit-btn");
-const allInputsAnswers = document.querySelectorAll('.input-answer')
+// const allInputsAnswers = document.querySelectorAll('.input-answer');
+const answersContainer = document.querySelectorAll('.answers-container');
+const checkBtn = document.querySelector(".check-btn")
 
 // containers
 const lvlContainer = document.querySelector('.lvls-container');
@@ -18,7 +20,7 @@ const overMainBtnClass = 'over-main-btn';
 const overLvlBtnClass = 'over-lvl-btn';
 const overExitBtn = 'over-exit-btn';
 const overAnswerBtnClass = 'over-answer-btn';
-const chosenAnswerBtn = 'input-answer:checked + label';
+const chosenAnswerBtn = 'input-answer:checked+label';
 
 
 // Listen functions
@@ -59,14 +61,41 @@ const blurBackground = function () {
     blurContainer.classList.toggle('hidden');
 }
 
-const chosenAnswer = function (className, arrayName) {
-        for (let i = 0; i < arrayName.length; i++) {
-            arrayName[i].addEventListener("click", function () {
-                arrayName[i].classList.toggle(className)
-            })
-        }
-}
+// const chosenAnswer = function (className, arrayName) {
+//         for (let i = 0; i < arrayName.length; i++) {
+//             if (answersContainer[0].dataset.correctAnswer === arrayName[i].textContent) {
+//                 console.log(`click!${i}`)
+//                 arrayName[i].addEventListener("click", function () {
+//                     arrayName[i].style.backgroundColor = "aqua";
+//                 })
+//                 // arrayName[i].addEventListener("click", function () {
+//                 //     allAnswerBtns[i].classList.toggle(className)
+//                 // })
+//             }
+//         }
+// }
 
+const checkAnswer = function () {
+    checkBtn.addEventListener("click", function () {
+        let selectedBtn = document.querySelector(`.${chosenAnswerBtn}`);
+        selectedBtn.classList.remove(chosenAnswerBtn);
+
+        if (answersContainer[0].dataset.correctAnswer === selectedBtn.textContent) {
+            selectedBtn.style.backgroundColor = "green";
+        } else {
+            selectedBtn.style.backgroundColor = "red";
+            let siblingAnswers = selectedBtn.parentElement.children;
+
+            for (let i = 0; i < siblingAnswers.length; i++) {
+                if (siblingAnswers[i].textContent === answersContainer[0].dataset.correctAnswer) {
+                    siblingAnswers[i].style.backgroundColor = "green";
+                }
+            }
+
+            checkBtn.textContent = "Next Question"
+        }
+    })
+}
 
 // handling buttons
 const btnHandler = function () {
@@ -75,13 +104,18 @@ const btnHandler = function () {
     listenMouseOver(overExitBtn, [exitButton]);
     listenMouseOver(overAnswerBtnClass, allAnswerBtns)
     showHideOnClick(newGameBtn, lvlContainer);
-    chosenAnswer(chosenAnswerBtn, allAnswerBtns)
+    // chosenAnswer(chosenAnswerBtn, allAnswerBtns)
     for (let i = 0; i < lvlBtns.length; i++) {
         showOnClick(lvlBtns[i], modalContainer);
     }
     hideOnClick(exitButton, modalContainer);
+    checkAnswer()
 }
 
+
+// const checkAnswer = function () {
+//
+// }
 
 // main
 function initGame() {
