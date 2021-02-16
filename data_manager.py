@@ -12,7 +12,7 @@ import connection
 #
 #
 # @connection.connection_handler
-# def get_answers_to_question(cursor: RealDictCursor, id_question: str):
+# def get_answers_to_question(cursor: RealDictCursor, id_question):
 #     query = """
 #             SELECT *
 #             FROM answers
@@ -31,3 +31,4 @@ def questions(cursor:RealDictCursor, lvl: int):
         FROM questions
     """)
     return cursor.fetchall()
+
