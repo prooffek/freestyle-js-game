@@ -22,4 +22,5 @@ def get_answers_to_question(cursor: RealDictCursor, id_question):
         "id_question": id_question
     }
     cursor.execute(query, param)
+
     return cursor.fetchall()
