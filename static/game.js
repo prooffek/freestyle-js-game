@@ -69,9 +69,14 @@ const blurBackground = function () {
 
 const listenNextQuestionBtn = function () {
     nextBtn.addEventListener("click", function () {
-        nextQuestion()
-        checkContainer.classList.remove("hidden")
-        nextQuestionContainer.classList.add("hidden")
+        nextQuestion();
+    })
+}
+
+const lisenCheckAnswerBtn = function () {
+    checkBtn.addEventListener("click", function () {
+        checkAnswer();
+
     })
 }
 
@@ -90,7 +95,6 @@ const listenNextQuestionBtn = function () {
 // }
 
 const checkAnswer = function () {
-    checkBtn.addEventListener("click", function () {
         let selectedBtn = document.querySelector(`.${chosenAnswerBtn}`);
         selectedBtn.classList.remove(chosenAnswerBtn);
 
@@ -107,10 +111,9 @@ const checkAnswer = function () {
                 }
             }
         }
-        checkContainer.classList.add("hidden");
-        nextQuestionContainer.classList.remove("hidden")
-        listenNextQuestionBtn()
-    })
+        checkBtn.classList.add("hidden");
+        nextBtn.classList.remove("hidden");
+        listenNextQuestionBtn();
 
 
 }
@@ -125,7 +128,12 @@ const nextQuestion = function () {
         currentQuestion++;
         divCurrentQuestion.classList.add("hidden");
         divNextQuestion.classList.remove("hidden");
+        checkBtn.classList.remove("hidden");
+        nextBtn.classList.add("hidden");
+        lisenCheckAnswerBtn();
+
     }
+
 
 
 }
@@ -135,14 +143,15 @@ const btnHandler = function () {
     listenMouseOver(overMainBtnClass, allMainBtns);
     listenMouseOver(overLvlBtnClass, lvlBtns);
     listenMouseOver(overExitBtn, [exitButton]);
-    listenMouseOver(overAnswerBtnClass, allAnswerBtns)
+    listenMouseOver(overAnswerBtnClass, allAnswerBtns);
     showHideOnClick(newGameBtn, lvlContainer);
     // chosenAnswer(chosenAnswerBtn, allAnswerBtns)
     for (let i = 0; i < lvlBtns.length; i++) {
         showOnClick(lvlBtns[i], modalContainer);
     }
     hideOnClick(exitButton, modalContainer);
-    checkAnswer()
+    lisenCheckAnswerBtn();
+
 }
 
 
@@ -152,9 +161,9 @@ const btnHandler = function () {
 
 // main
 function initGame() {
-    checkContainer.classList.remove("hidden")
-    nextQuestionContainer.classList.add("hidden")
+
     btnHandler()
+
 
 }
 
