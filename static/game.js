@@ -2,6 +2,7 @@
 
 let currentQuestion = 1;
 let maxCountQuestion = 3;
+let questionIndex = 0
 
 // buttons
 const allMainBtns = document.querySelectorAll('.main-btn');
@@ -13,6 +14,7 @@ const exitButton = document.querySelector(".exit-btn");
 const answersContainer = document.querySelectorAll('.answers-container');
 const checkBtn = document.querySelector(".check-btn");
 const nextBtn = document.querySelector(".next-btn");
+let selectedBtn;
 
 // containers
 const lvlContainer = document.querySelector('.lvls-container');
@@ -20,6 +22,7 @@ const modalContainer = document.querySelector('.modal');
 const blurContainer = document.querySelector(".blur-background");
 const checkContainer = document.querySelector(".submit-container");
 const nextQuestionContainer = document.querySelector(".next-container");
+const mainQuestionContainer = document.querySelector("main")
 
 // classes
 const overMainBtnClass = 'over-main-btn';
@@ -93,27 +96,33 @@ const lisenCheckAnswerBtn = function () {
 //             }
 //         }
 // }
-
+// }
 const checkAnswer = function () {
-        let selectedBtn = document.querySelector(`.${chosenAnswerBtn}`);
-        selectedBtn.classList.remove(chosenAnswerBtn);
+        selectedBtn = document.querySelectorAll(`.${chosenAnswerBtn}`)[questionIndex];
+        // let selectedBtn = selectedBtnArrey[questionIndex]
+        // console.log(selectedBtn)
+        // selectedBtn.classList.remove(chosenAnswerBtn);
+        // questionIndex = mainQuestionContainer.dataset.questionIndex;
 
-        if (answersContainer[0].dataset.correctAnswer === selectedBtn.textContent) {
+       if (!selectedBtn) {
+           return
+       } else if (answersContainer[questionIndex].dataset.correctAnswer === selectedBtn.textContent) {
             selectedBtn.style.backgroundColor = "green";
-
         } else {
             selectedBtn.style.backgroundColor = "red";
             let siblingAnswers = selectedBtn.parentElement.children;
 
             for (let i = 0; i < siblingAnswers.length; i++) {
-                if (siblingAnswers[i].textContent === answersContainer[0].dataset.correctAnswer) {
+                if (siblingAnswers[i].textContent === answersContainer[questionIndex].dataset.correctAnswer) {
                     siblingAnswers[i].style.backgroundColor = "green";
                 }
             }
         }
+        // selectedBtn.checked = false
         checkBtn.classList.add("hidden");
         nextBtn.classList.remove("hidden");
         listenNextQuestionBtn();
+        questionIndex++
 
 
 }

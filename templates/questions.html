@@ -1,6 +1,6 @@
 {% block questions %}
 
-<main class="modal hidden" xmlns="http://www.w3.org/1999/html">
+<main class="modal hidden" data-question-index="0" xmlns="http://www.w3.org/1999/html">
 
     <div class="exit-btn">
         <button><img src="/static/images/exit-575715.png"></button>
@@ -14,15 +14,16 @@
                 {{ questions_lvl1[0].content }}
             </p>
         </div>
-        <div class="answers-container" data-correct-answer="{{ questions_lvl1[0].good_answer }}">
+        <div class="answers-container" data-correct-answer="{{ questions_lvl1[0].good_answer }}" data-question-index="0">
+            {% set keys = random_keys_list[0] %}
             <input type="radio" value="Answer-1" id="q1-answer1" class="input-answer" name="answers1">
-            <label for="q1-answer1" class="answer-btn">{{ questions_lvl1[0].good_answer }}</label>
+            <label for="q1-answer1" class="answer-btn">{{ questions_lvl1[0][keys[0]] }}</label>
             <input type="radio" value="Answer-2" id="q1-answer2" class="input-answer" name="answers1">
-            <label for="q1-answer2" class="answer-btn">{{ questions_lvl1[0].false_answer1 }}</label>
+            <label for="q1-answer2" class="answer-btn">{{ questions_lvl1[0][keys[1]] }}</label>
             <input type="radio" value="Answer-3" id="q1-answer3" class="input-answer" name="answers1">
-            <label for="q1-answer3" class="answer-btn">{{ questions_lvl1[0].false_answer2 }}</label>
+            <label for="q1-answer3" class="answer-btn">{{ questions_lvl1[0][keys[2]] }}</label>
             <input type="radio" value="Answer-4" id="q1-answer4" class="input-answer" name="answers1">
-            <label for="q1-answer4" class="answer-btn">{{ questions_lvl1[0].false_answer3 }}</label>
+            <label for="q1-answer4" class="answer-btn">{{ questions_lvl1[0][keys[3]] }}</label>
         </div>
     </div>
     <div class="question-container hidden" id="2">
@@ -34,15 +35,16 @@
                 {{ questions_lvl1[1].content }}
             </p>
         </div>
-        <div class="answers-container" data-correct-answer="{{ questions_lvl1[1].good_answer }}">
+        <div class="answers-container" id="question_2" data-correct-answer="{{ questions_lvl1[1].good_answer }}">
+            {% set keys = random_keys_list[1] %}
             <input type="radio" value="Answer-1" id="q2-answer1" class="input-answer" name="answers2">
-            <label for="q2-answer1" class="answer-btn">{{ questions_lvl1[1].good_answer }}</label>
+            <label for="q2-answer1" class="answer-btn">{{ questions_lvl1[1][keys[0]] }}</label>
             <input type="radio" value="Answer-2" id="q2-answer2" class="input-answer" name="answers2">
-            <label for="q2-answer2" class="answer-btn">{{ questions_lvl1[1].false_answer1 }}</label>
+            <label for="q2-answer2" class="answer-btn">{{ questions_lvl1[1][keys[1]] }}</label>
             <input type="radio" value="Answer-3" id="q2-answer3" class="input-answer" name="answers2">
-            <label for="q2-answer3" class="answer-btn">{{ questions_lvl1[1].false_answer2 }}</label>
+            <label for="q2-answer3" class="answer-btn">{{ questions_lvl1[1][keys[2]] }}</label>
             <input type="radio" value="Answer-4" id="q2-answer4" class="input-answer" name="answers2">
-            <label for="q2-answer4" class="answer-btn">{{ questions_lvl1[1].false_answer3 }}</label>
+            <label for="q2-answer4" class="answer-btn">{{ questions_lvl1[1][keys[3]] }}</label>
         </div>
     </div>
     <div class="question-container hidden" id="3">
@@ -54,20 +56,21 @@
                 {{ questions_lvl1[2].content }}
             </p>
         </div>
-        <div class="answers-container" data-correct-answer="{{ questions_lvl1[2].good_answer }}">
+        <div class="answers-container" data-correct-answer="{{ questions_lvl1[2].good_answer }}" data-question-index="2">
+            {% set keys = random_keys_list[2] %}
             <input type="radio" value="Answer-1" id="q3-answer1" class="input-answer" name="answers3">
-            <label for="answer1" class="answer-btn">{{ questions_lvl1[2].good_answer }}</label>
+            <label for="answer1" class="answer-btn">{{ questions_lvl1[2][keys[0]] }}</label>
             <input type="radio" value="Answer-2" id="q3-answer2" class="input-answer" name="answers3">
-            <label for="answer2" class="answer-btn">{{ questions_lvl1[2].false_answer1 }}</label>
+            <label for="answer2" class="answer-btn">{{ questions_lvl1[2][keys[0]] }}</label>
             <input type="radio" value="Answer-3" id="q3-answer3" class="input-answer" name="answers3">
-            <label for="answer3" class="answer-btn">{{ questions_lvl1[2].false_answer2 }}</label>
+            <label for="answer3" class="answer-btn">{{ questions_lvl1[2][keys[0]] }}</label>
             <input type="radio" value="Answer-4" id="q3-answer4" class="input-answer" name="answers3">
-            <label for="answer4" class="answer-btn">{{ questions_lvl1[2].false_answer3 }}</label>
+            <label for="answer4" class="answer-btn">{{ questions_lvl1[2][keys[0]] }}</label>
         </div>
     </div>
 
     <div class="submit-container">
-        <button class="check-btn">Sprawdź</button>
+        <button class="check-btn" data-check-count="{{ check_count }}">Sprawdź</button>
     </div>
 
     <div class="next-container">
