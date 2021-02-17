@@ -151,14 +151,14 @@ const nextQuestion = function () {
 const btnHandler = function () {
     listenMouseOver(overMainBtnClass, allMainBtns);
     listenMouseOver(overLvlBtnClass, lvlBtns);
-    listenMouseOver(overExitBtn, [exitButton]);
+    // listenMouseOver(overExitBtn, [exitButton]);
     listenMouseOver(overAnswerBtnClass, allAnswerBtns);
     showHideOnClick(newGameBtn, lvlContainer);
     // chosenAnswer(chosenAnswerBtn, allAnswerBtns)
     for (let i = 0; i < lvlBtns.length; i++) {
         showOnClick(lvlBtns[i], modalContainer);
     }
-    hideOnClick(exitButton, modalContainer);
+    // hideOnClick(exitButton, modalContainer);
     lisenCheckAnswerBtn();
 
 }
