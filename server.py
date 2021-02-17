@@ -33,6 +33,7 @@ lvl1 = [{"question_content": "pytanie 1",
 @app.route('/')
 def index():
     all_data = create_list() # [{pytanie, dobra odpowiedź, zła odpowiedź1, zła odpowiedź2, zła odpowiedź3},{}....]
+    random.shuffle(all_data)
     return render_template("index.html", questions_lvl1=all_data, random_keys_list=randomise_keys(all_data))
 
 
