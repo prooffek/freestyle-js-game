@@ -23,6 +23,22 @@
             </div>
         </div>
         <button class="main-btn" id="ranking-list">📜 Lista Rankingowa 📜</button>
+        <div class="table-container hidden" id="table">
+            <table style="width:100%">
+                {% for key in ranking_list[0] %}
+                        <th>
+                            {{ key }}
+                        </th>
+                {% endfor %}
+                {% for line in ranking_list %}
+                    <tr>
+                    {% for key in line %}
+                        <td>{{ line[key] }}</td>
+                     {% endfor %}
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
     </menu>
 
 {#    <main class="modal hidden">#}

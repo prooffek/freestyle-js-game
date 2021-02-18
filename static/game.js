@@ -22,7 +22,8 @@ let labelEl = document.querySelectorAll("label");
 const allMainBtns = document.querySelectorAll('.main-btn');
 const allAnswerBtns = document.querySelectorAll('.answer-btn');
 const lvlBtns = document.querySelectorAll('.lvl-btn');
-const [newGameBtn, rankListBtn] = document.querySelectorAll('button');
+const [newGameBtn] = document.querySelectorAll('button');
+const rankListBtn = document.getElementById("ranking-list");
 const exitButton = document.querySelector(".exit-btn");
 // const allInputsAnswers = document.querySelectorAll('.input-answer');
 const answersContainer = document.querySelectorAll('.answers-container');
@@ -37,6 +38,7 @@ const blurContainer = document.querySelector(".blur-background");
 const checkContainer = document.querySelector(".submit-container");
 const nextQuestionContainer = document.querySelector(".next-container");
 const mainQuestionContainer = document.querySelector("main");
+const tableContainer = document.querySelector('.table-container');
 
 // classes
 const overMainBtnClass = 'over-main-btn';
@@ -214,6 +216,15 @@ const nextQuestion = function () {
         removeBtnColors()
     }
 }
+function showHideRanking(elbtn, container){
+    elbtn.addEventListener('click',function (){
+        if (container.style.display ==="none"){
+        container.style.display = "block";
+    }else{
+        container.style.display = "none";
+    }
+    })
+}
 
 // handling buttons
 const btnHandler = function () {
@@ -222,6 +233,7 @@ const btnHandler = function () {
     // listenMouseOver(overExitBtn, [exitButton]);
     listenMouseOver(overAnswerBtnClass, allAnswerBtns);
     showHideOnClick(newGameBtn, lvlContainer);
+    showHideOnClick(rankListBtn, tableContainer);
     // chosenAnswer(chosenAnswerBtn, allAnswerBtns)
     for (let i = 0; i < lvlBtns.length; i++) {
         showOnClick(lvlBtns[i], modalContainer);

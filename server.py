@@ -35,7 +35,9 @@ lvl1 = [{"question_content": "pytanie 1",
 def index():
     lvl1, lvl2, lvl3 = [create_list(num) for num in LEVELS] # [{pytanie, dobra odpowiedź, zła odpowiedź1, zła odpowiedź2, zła odpowiedź3},{}....]
     random.shuffle(lvl1), random.shuffle(lvl2), random.shuffle(lvl3)
-    return render_template("index.html", questions_lvl1=lvl1, questions_lvl2=lvl2, questions_lvl3=lvl3, random_keys_list=randomise_keys(lvl1))
+    ranking = create_ranking()
+    return render_template("index.html", questions_lvl1=lvl1, questions_lvl2=lvl2, questions_lvl3=lvl3,
+                           random_keys_list=randomise_keys(lvl1),ranking_list=ranking )
 
 
 def create_list(lvlNum):
@@ -62,3 +64,15 @@ def randomise_keys(list_of_question_dicts):
         random.shuffle(LIST_OF_KEYS)
         randomised_keys_for_all_questions.append(copy.deepcopy(LIST_OF_KEYS))
     return randomised_keys_for_all_questions
+
+def create_ranking():
+    ranking = []
+    rankline= {}
+    rank_list = data_manager.get_ranking()
+    for i in range (len(rank_list)):
+        rankline["ID"] = rank_list[i]['id']
+        rankline["Name"] = rank_list[i]['name']
+        rankline["Points"] = rank_list[i]['points']
+        rankline_copy = rankline.copy()
+        ranking.append(rankline_copy)
+    return ranking
