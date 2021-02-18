@@ -155,12 +155,19 @@ menu {
     left: 50%;
     transform: translate(-50%, -50%);
     width: 80%;
+    min-width: 700px;
     min-height: 30vh;
     background-color: white;
-    padding: 2rem;
     border-radius: 5px;
     box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.3);
     z-index: 10;
+}
+
+.modal-background-color {
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 20, 0.2);
+    padding: 2rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -206,10 +213,10 @@ menu {
 
 .question p {
     line-height: 2.5rem;
-    font-size: 1.8rem;
+    font-size: 2.5rem;
     font-weight: 400;
     font-family: "Times New Roman";
-    /*text-align: center;*/
+    text-align: center;
     color: black;
 }
 
@@ -223,12 +230,14 @@ menu {
 
 .answer-btn {
     min-height: 100px;
-    width: 20%;
-    background-color: rgba(255, 255, 255, 0.4);
+    min-width: 120px;
+    /*max-width: 20vw;*/
+    /*background-color: rgba(255, 255, 255, 0.4);*/
+    background: rgba(255, 255, 255, 0.4);
     border: black solid 1px;
     border-radius: 10px;
-    line-height: 1.1rem;
-    font-size: 1.2rem;
+    line-height: 1.4rem;
+    font-size: 1.5rem;
     font-weight: 400;
     font-family: "Times New Roman";
     text-align: center;
@@ -283,7 +292,7 @@ menu {
     padding: 7px;
 }
 
-.submit-container, .next-container {
+.submit-container {
     height: 100px;
     width: 100%;
     display: flex;
@@ -292,6 +301,37 @@ menu {
 
 .input-answer {
     visibility:hidden;
+}
+
+.end-quiz {
+    width: 70%;
+}
+
+.text-end-game {
+    font-size: 2rem;
+    font-weight: bold;
+    font-family: "Times New Roman";
+    color: black;
+    text-align: center;
+}
+
+.panda {
+    align-content: center;
+}
+
+.add-score {
+    background-color: deepskyblue;
+    border-radius: 10px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    font-family: "Times New Roman";
+    text-align: center;
+    cursor: pointer;
+    color: white;
+    margin-left: 50%;
+    margin-top: 40px;
+    margin-bottom: 10px;
+
 }
 
 table, th, td {

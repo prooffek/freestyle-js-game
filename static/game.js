@@ -10,6 +10,8 @@ let questionNum;
 let playedLvlDict;
 let correctAnswer;
 let greenbtn;
+let pointscount = 0;
+let deltaPoints = 0;
 
 //HTML elements
 const questionTitle = document.getElementById("question-title");
@@ -37,7 +39,10 @@ const blurContainer = document.querySelector(".blur-background");
 const checkContainer = document.querySelector(".submit-container");
 const nextQuestionContainer = document.querySelector(".next-container");
 const mainQuestionContainer = document.querySelector("main");
+const endQuizContainer = document.querySelector(".end-quiz")
+const questionContainer = document.querySelector(".question-container")
 const tableContainer = document.querySelector('.table-container');
+
 
 // classes
 const overMainBtnClass = 'over-main-btn';
@@ -74,10 +79,13 @@ const showOnClick = function (btnEl, container) {
 
        if (btnEl === lvlBtns[easyLvl]) {
            playedLvlDict = lvl1;
+           deltaPoints = 1;
        } else if (btnEl === lvlBtns[mediumLvl]) {
            playedLvlDict = lvl2;
+           deltaPoints = 3;
        } else if (btnEl === lvlBtns[misticLvl]) {
            playedLvlDict = lvl3;
+           deltaPoints = 5;
        }
 
        showQuestion(playedLvlDict);
@@ -89,7 +97,15 @@ const hideOnClick = function (btnEl, container) {
     btnEl.addEventListener("click", function () {
        container.classList.add('hidden');
        blurBackground();
-    });
+
+       if (btnEl === exitButton) {
+           questionIndex = 0;
+           pointscount = 0;
+           removeBtnColors();
+           shuffle(playedLvlDict);
+           shuffle(random_keys_list);
+        }
+    })
     // if (container === modalContainer) blurBackground();
 }
 
@@ -177,6 +193,8 @@ const checkAnswer = function () {
            return
        } else if (correctAnswer === selectedBtn.textContent) {
             selectedBtn.style.backgroundColor = "rgba(0, 255, 120, 0.7)";
+            pointscount += deltaPoints;
+            console.log(pointscount);
         } else {
             selectedBtn.style.backgroundColor = "rgba(255, 0, 0, 0.7)";
 
@@ -196,8 +214,9 @@ const checkAnswer = function () {
 }
 
 const removeBtnColors = function () {
-    selectedBtn.style.backgroundColor = null;
+    if (selectedBtn) selectedBtn.style.backgroundColor = null;
     if (greenbtn) greenbtn.style.backgroundColor = null;
+    inputEl.forEach(el => el.checked = false);
 }
 
 const nextQuestion = function () {
@@ -215,6 +234,12 @@ const nextQuestion = function () {
         // lisenCheckAnswerBtn();
         removeBtnColors();
     }
+    if (currentQuestion === maxCountQuestion) {
+        questionContainer.classList.add("hidden");
+        checkBtn.classList.add("hidden");
+        nextBtn.classList.add("hidden");
+        endQuizContainer.classList.remove("hidden");
+    }
 }
 function showHideRanking(elbtn, container){
     elbtn.addEventListener('click',function (){
@@ -226,18 +251,28 @@ function showHideRanking(elbtn, container){
     })
 }
 
+const shuffle = function (arrey) {
+    for (let tour = 0; tour < Math.floor(Math.random() * (6 + 1)); tour++) {
+        for (let i = arrey.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [arrey[i], arrey[j]] = [arrey[j], arrey[i]];
+        }
+    }
+    return arrey;
+}
+
 // handling buttons
 const btnHandler = function () {
     listenMouseOver(overMainBtnClass, allMainBtns);
     listenMouseOver(overLvlBtnClass, lvlBtns);
-    // listenMouseOver(overExitBtn, [exitButton]);
+    listenMouseOver(overExitBtn, [exitButton]);
     showHideOnClick(newGameBtn, lvlContainer);
     showHideRanking(rankListBtn, tableContainer);
     // chosenAnswer(chosenAnswerBtn, allAnswerBtns)
     for (let i = 0; i < lvlBtns.length; i++) {
         showOnClick(lvlBtns[i], modalContainer);
     }
-    // hideOnClick(exitButton, modalContainer);
+    hideOnClick(exitButton, modalContainer);
     lisenCheckAnswerBtn();
 }
 

@@ -49,7 +49,7 @@ def create_list(lvlNum):
     for i in range(0, questions_num):
         question_id = questions[i]["id"]
         single_qa["content"] = questions[i]["question"]
-        answer = data_manager.get_answers_to_question(question_id + 1)
+        answer = data_manager.get_answers_to_question(question_id)
         single_qa["good_answer"] = answer[0]["answer"]
         single_qa["false_answer1"] = answer[1]["answer"]
         single_qa["false_answer2"] = answer[2]["answer"]
@@ -58,12 +58,20 @@ def create_list(lvlNum):
         all_data.append(single_qa_copy)
     return all_data
 
+
 def randomise_keys(list_of_question_dicts):
     randomised_keys_for_all_questions = []
     for num in range(len(list_of_question_dicts)):
         random.shuffle(LIST_OF_KEYS)
         randomised_keys_for_all_questions.append(copy.deepcopy(LIST_OF_KEYS))
     return randomised_keys_for_all_questions
+
+
+
+@app.route('/add-score')
+def add_score():
+    pass
+
 
 def create_ranking():
     ranking = []
@@ -76,3 +84,4 @@ def create_ranking():
         rankline_copy = rankline.copy()
         ranking.append(rankline_copy)
     return ranking
+
