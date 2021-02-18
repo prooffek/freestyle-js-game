@@ -25,6 +25,15 @@ def get_answers_to_question(cursor: RealDictCursor, id_question):
     }
     cursor.execute(query, param)
     return cursor.fetchall()
+
+@connection.connection_handler
+def get_ranking(cursor: RealDictCursor):
+    query = """
+        SELECT *
+        FROM ranking
+    """
+    cursor.execute(query)
+    return cursor.fetchall()
 #
 # @connection.connection_handler
 # def questions(cursor:RealDictCursor, lvl: int):

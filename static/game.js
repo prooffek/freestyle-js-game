@@ -10,6 +10,8 @@ let questionNum;
 let playedLvlDict;
 let correctAnswer;
 let greenbtn;
+let pointscount = 0;
+let deltaPoints = 0;
 
 //HTML elements
 const questionTitle = document.getElementById("question-title");
@@ -22,7 +24,8 @@ let labelEl = document.querySelectorAll("label");
 const allMainBtns = document.querySelectorAll('.main-btn');
 const allAnswerBtns = document.querySelectorAll('.answer-btn');
 const lvlBtns = document.querySelectorAll('.lvl-btn');
-const [newGameBtn, rankListBtn] = document.querySelectorAll('button');
+const [newGameBtn] = document.querySelectorAll('button');
+const rankListBtn = document.getElementById("ranking-list");
 const exitButton = document.querySelector(".exit-btn");
 // const allInputsAnswers = document.querySelectorAll('.input-answer');
 const answersContainer = document.querySelectorAll('.answers-container');
@@ -39,6 +42,8 @@ const nextQuestionContainer = document.querySelector(".next-container");
 const mainQuestionContainer = document.querySelector("main");
 const endQuizContainer = document.querySelector(".end-quiz")
 const questionContainer = document.querySelector(".question-container")
+const tableContainer = document.querySelector('.table-container');
+
 
 // classes
 const overMainBtnClass = 'over-main-btn';
@@ -75,10 +80,13 @@ const showOnClick = function (btnEl, container) {
 
        if (btnEl === lvlBtns[easyLvl]) {
            playedLvlDict = lvl1;
+           deltaPoints = 1;
        } else if (btnEl === lvlBtns[mediumLvl]) {
            playedLvlDict = lvl2;
+           deltaPoints = 3;
        } else if (btnEl === lvlBtns[misticLvl]) {
            playedLvlDict = lvl3;
+           deltaPoints = 5;
        }
 
        showQuestion(playedLvlDict);
@@ -177,6 +185,8 @@ const checkAnswer = function () {
            return
        } else if (correctAnswer === selectedBtn.textContent) {
             selectedBtn.style.backgroundColor = "green";
+            pointscount += deltaPoints;
+            console.log(pointscount);
         } else {
             selectedBtn.style.backgroundColor = "red";
 
@@ -222,6 +232,15 @@ const nextQuestion = function () {
         endQuizContainer.classList.remove("hidden");
     }
 }
+function showHideRanking(elbtn, container){
+    elbtn.addEventListener('click',function (){
+        if (container.style.display ==="none"){
+        container.style.display = "block";
+    }else{
+        container.style.display = "none";
+    }
+    })
+}
 
 // handling buttons
 const btnHandler = function () {
@@ -230,6 +249,7 @@ const btnHandler = function () {
     // listenMouseOver(overExitBtn, [exitButton]);
     listenMouseOver(overAnswerBtnClass, allAnswerBtns);
     showHideOnClick(newGameBtn, lvlContainer);
+    showHideOnClick(rankListBtn, tableContainer);
     // chosenAnswer(chosenAnswerBtn, allAnswerBtns)
     for (let i = 0; i < lvlBtns.length; i++) {
         showOnClick(lvlBtns[i], modalContainer);
