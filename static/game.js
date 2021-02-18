@@ -37,6 +37,8 @@ const blurContainer = document.querySelector(".blur-background");
 const checkContainer = document.querySelector(".submit-container");
 const nextQuestionContainer = document.querySelector(".next-container");
 const mainQuestionContainer = document.querySelector("main");
+const endQuizContainer = document.querySelector(".end-quiz")
+const questionContainer = document.querySelector(".question-container")
 
 // classes
 const overMainBtnClass = 'over-main-btn';
@@ -211,7 +213,13 @@ const nextQuestion = function () {
         checkBtn.classList.remove("hidden");
         nextBtn.classList.add("hidden");
         // lisenCheckAnswerBtn();
-        removeBtnColors()
+        removeBtnColors();
+    }
+    if (currentQuestion === maxCountQuestion) {
+        questionContainer.classList.add("hidden");
+        checkBtn.classList.add("hidden");
+        nextBtn.classList.add("hidden");
+        endQuizContainer.classList.remove("hidden");
     }
 }
 

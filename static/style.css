@@ -290,3 +290,33 @@ menu {
     visibility:hidden;
 }
 
+.end-quiz {
+    width: 70%;
+}
+
+.text-end-game {
+    font-size: 2rem;
+    font-weight: bold;
+    font-family: "Times New Roman";
+    color: black;
+    text-align: center;
+}
+
+.panda {
+    align-content: center;
+}
+
+.add-score {
+    background-color: deepskyblue;
+    border-radius: 10px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    font-family: "Times New Roman";
+    text-align: center;
+    cursor: pointer;
+    color: white;
+    margin-left: 50%;
+    margin-top: 40px;
+    margin-bottom: 10px;
+
+}

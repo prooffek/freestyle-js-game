@@ -8,7 +8,7 @@
 {#    </div>#}
 
 
-<div class="question-container" id=1>
+    <div class="question-container" id=1>
         <div class="question">
             <h1 id="question-title"></h1>
         </div>
@@ -26,6 +26,20 @@
     <!-- proceeding to another question -->
     <div class="next-container">
         <button class="next-btn hidden">Kolejne pytanie</button>
+    </div>
+
+    <div class="end-quiz hidden">
+        <h3 class="text-end-game">Gratulacje!</h3>
+        <h3 class="text-end-game">Zdobyłeś xxx punktów</h3>
+        <h4 class="text-end-game">JavaScript jest ... ale nie bądź jak panda... 😉</h4>
+        <img class="panda" src="/static/images/panda.gif">
+
+        <form action="add-score.html">
+            <button class="add-score">Zapisz wynik</button>
+        </form>
+
+
+
     </div>
 
 
