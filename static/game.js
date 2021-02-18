@@ -10,6 +10,8 @@ let questionNum;
 let playedLvlDict;
 let correctAnswer;
 let greenbtn;
+let pointscount = 0;
+let deltaPoints = 0;
 
 //HTML elements
 const questionTitle = document.getElementById("question-title");
@@ -75,10 +77,13 @@ const showOnClick = function (btnEl, container) {
 
        if (btnEl === lvlBtns[easyLvl]) {
            playedLvlDict = lvl1;
+           deltaPoints = 1;
        } else if (btnEl === lvlBtns[mediumLvl]) {
            playedLvlDict = lvl2;
+           deltaPoints = 3;
        } else if (btnEl === lvlBtns[misticLvl]) {
            playedLvlDict = lvl3;
+           deltaPoints = 5;
        }
 
        showQuestion(playedLvlDict);
@@ -177,6 +182,8 @@ const checkAnswer = function () {
            return
        } else if (correctAnswer === selectedBtn.textContent) {
             selectedBtn.style.backgroundColor = "green";
+            pointscount += deltaPoints;
+            console.log(pointscount);
         } else {
             selectedBtn.style.backgroundColor = "red";
 
