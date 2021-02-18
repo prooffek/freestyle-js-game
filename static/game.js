@@ -20,7 +20,6 @@ let labelEl = document.querySelectorAll("label");
 
 // buttons
 const allMainBtns = document.querySelectorAll('.main-btn');
-const allAnswerBtns = document.querySelectorAll('.answer-btn');
 const lvlBtns = document.querySelectorAll('.lvl-btn');
 const [newGameBtn] = document.querySelectorAll('button');
 const rankListBtn = document.getElementById("ranking-list");
@@ -123,22 +122,23 @@ const createAnswerBtns = function () {
         //adding labels to HTML
         let para2 = document.createElement("label");
         para2.setAttribute("class", "answer-btn")
-        answersContainerNew.appendChild(para2)
+        answersContainerNew.appendChild(para2);
     }
 }
 
 const addAnswerAttributes = function () {
     inputEl = document.querySelectorAll("input");
     labelEl = document.querySelectorAll("label");
+    listenMouseOver(overAnswerBtnClass, labelEl);
 
     for (let i = 0; i < inputEl.length; i++) {
         let key = random_keys_list[questionIndex][i]
         let answerNum = i + 1
-        inputEl[i].setAttribute("value", `Answer-${answerNum}`)
-        inputEl[i].setAttribute("id", `q${questionNum}-answer${answerNum}`)
-        inputEl[i].setAttribute("name", `answers${questionNum}`)
-        labelEl[i].setAttribute("for", `q${questionNum}-answer${answerNum}`)
-        labelEl[i].textContent = playedLvlDict[questionIndex][key]
+        inputEl[i].setAttribute("value", `Answer-${answerNum}`);
+        inputEl[i].setAttribute("id", `q${questionNum}-answer${answerNum}`);
+        inputEl[i].setAttribute("name", `answers${questionNum}`);
+        labelEl[i].setAttribute("for", `q${questionNum}-answer${answerNum}`);
+        labelEl[i].textContent = playedLvlDict[questionIndex][key];
     }
 }
 
@@ -148,8 +148,8 @@ const showQuestion = function () {
     questionTitle.textContent = `Pytanie ${questionNum}`;
     questionContent.textContent = playedLvlDict[questionIndex].content;
 
-    if (document.querySelectorAll("input").length === 0) createAnswerBtns()
-    addAnswerAttributes()
+    if (document.querySelectorAll("input").length === 0) createAnswerBtns();
+    addAnswerAttributes();
 }
 
 // const chosenAnswer = function (className, arrayName) {
@@ -176,15 +176,15 @@ const checkAnswer = function () {
        if (!selectedBtn) {
            return
        } else if (correctAnswer === selectedBtn.textContent) {
-            selectedBtn.style.backgroundColor = "green";
+            selectedBtn.style.backgroundColor = "rgba(0, 255, 120, 0.7)";
         } else {
-            selectedBtn.style.backgroundColor = "red";
+            selectedBtn.style.backgroundColor = "rgba(255, 0, 0, 0.7)";
 
             let siblingAnswers = selectedBtn.parentElement.children;
             for (let i = 0; i < siblingAnswers.length; i++) {
                 if (siblingAnswers[i].textContent === correctAnswer) {
                     greenbtn = siblingAnswers[i];
-                    greenbtn.style.backgroundColor = "green";
+                    greenbtn.style.backgroundColor = "rgba(0, 255, 120, 0.7)";
                 }
             }
         }
@@ -201,7 +201,7 @@ const removeBtnColors = function () {
 }
 
 const nextQuestion = function () {
-    let nextIdQuestion = currentQuestion + 1
+    let nextIdQuestion = currentQuestion + 1;
     if (nextIdQuestion <= maxCountQuestion) {
 
         // let divCurrentQuestion = document.getElementById(currentQuestion.toString());
@@ -213,7 +213,7 @@ const nextQuestion = function () {
         checkBtn.classList.remove("hidden");
         nextBtn.classList.add("hidden");
         // lisenCheckAnswerBtn();
-        removeBtnColors()
+        removeBtnColors();
     }
 }
 function showHideRanking(elbtn, container){
@@ -231,9 +231,8 @@ const btnHandler = function () {
     listenMouseOver(overMainBtnClass, allMainBtns);
     listenMouseOver(overLvlBtnClass, lvlBtns);
     // listenMouseOver(overExitBtn, [exitButton]);
-    listenMouseOver(overAnswerBtnClass, allAnswerBtns);
     showHideOnClick(newGameBtn, lvlContainer);
-    showHideOnClick(rankListBtn, tableContainer);
+    showHideRanking(rankListBtn, tableContainer);
     // chosenAnswer(chosenAnswerBtn, allAnswerBtns)
     for (let i = 0; i < lvlBtns.length; i++) {
         showOnClick(lvlBtns[i], modalContainer);
@@ -252,7 +251,7 @@ const btnHandler = function () {
 // main
 function initGame() {
 
-    btnHandler()
+    btnHandler();
 
 
 }

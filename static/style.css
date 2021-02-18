@@ -192,7 +192,7 @@ menu {
 
 .question {
     display: flex;
-    justify-content: left;
+    justify-content: center;
     margin-bottom: 4rem;
 }
 
@@ -205,11 +205,11 @@ menu {
 }
 
 .question p {
-    line-height: 1.5rem;
-    font-size: 1.3rem;
+    line-height: 2.5rem;
+    font-size: 1.8rem;
     font-weight: 400;
     font-family: "Times New Roman";
-    text-align: justify;
+    /*text-align: center;*/
     color: black;
 }
 
@@ -222,19 +222,20 @@ menu {
 }
 
 .answer-btn {
-    height: 100%;
+    min-height: 100px;
     width: 20%;
     background-color: rgba(255, 255, 255, 0.4);
     border: black solid 1px;
     border-radius: 10px;
-    line-height: 1.5rem;
-    font-size: 1.5rem;
+    line-height: 1.1rem;
+    font-size: 1.2rem;
     font-weight: 400;
     font-family: "Times New Roman";
     text-align: center;
     cursor: pointer;
     color: black;
     margin: auto;
+    padding: 7px;
 }
 
 .over-answer-btn {
@@ -246,6 +247,8 @@ menu {
     background-color: aqua;
     border: deepskyblue solid 2px;
     box-shadow: 0 0 1em deepskyblue;
+    font-size: 1.3rem;
+    font-weight: 550;
 }
 
 .hidden {
@@ -265,7 +268,7 @@ menu {
 
 .check-btn, .next-btn {
     height: 50%;
-    width: 10%;
+    min-width: 12rem;
     background-color: deepskyblue;
     border-radius: 10px;
     font-size: 1.5rem;
@@ -277,6 +280,7 @@ menu {
     margin-left: 70%;
     margin-top: 40px;
     margin-bottom: 10px;
+    padding: 7px;
 }
 
 .submit-container, .next-container {
