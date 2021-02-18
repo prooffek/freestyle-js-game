@@ -1,7 +1,8 @@
 from flask import Flask, request, render_template, redirect, url_for
-import data_manager, random, copy
+import data_manager, random, copy, json
 NUMBER_OF_QUESTIONS = 3
 LIST_OF_KEYS = ["good_answer", "false_answer1", "false_answer2", "false_answer3"]
+LEVELS = [1, 2, 3]
 
 app = Flask(__name__)
 
@@ -32,18 +33,21 @@ lvl1 = [{"question_content": "pytanie 1",
 
 @app.route('/')
 def index():
-    all_data = create_list() # [{pytanie, dobra odpowiedź, zła odpowiedź1, zła odpowiedź2, zła odpowiedź3},{}....]
-    random.shuffle(all_data)
-    return render_template("index.html", questions_lvl1=all_data, random_keys_list=randomise_keys(all_data))
+    lvl1, lvl2, lvl3 = [create_list(num) for num in LEVELS] # [{pytanie, dobra odpowiedź, zła odpowiedź1, zła odpowiedź2, zła odpowiedź3},{}....]
+    random.shuffle(lvl1)
+    return render_template("index.html", questions_lvl1=lvl1, questions_lvl2=lvl2, questions_lvl3=lvl3, random_keys_list=randomise_keys(lvl1))
 
 
-def create_list():
-    questions = data_manager.get_questions()
+def create_list(lvlNum):
+    questions = data_manager.get_questions(lvlNum)
+    questions_num = len(questions)
     all_data = []
     single_qa = {}
-    for i in range(0, NUMBER_OF_QUESTIONS):
+    # for i in range(0, NUMBER_OF_QUESTIONS):
+    for i in range(0, questions_num):
+        question_id = questions[i]["id"]
         single_qa["content"] = questions[i]["question"]
-        answer = data_manager.get_answers_to_question(i+1)
+        answer = data_manager.get_answers_to_question(question_id + 1)
         single_qa["good_answer"] = answer[0]["answer"]
         single_qa["false_answer1"] = answer[1]["answer"]
         single_qa["false_answer2"] = answer[2]["answer"]

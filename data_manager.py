@@ -3,11 +3,13 @@ import connection
 
 
 @connection.connection_handler
-def get_questions(cursor: RealDictCursor):
+def get_questions(cursor: RealDictCursor, lvl: int):
     query = """  SELECT *
                 FROM questions
+                WHERE level = %(lvl)s
            """
-    cursor.execute(query)
+    param = {"lvl": f"{lvl}"}
+    cursor.execute(query, param)
     return cursor.fetchall()
 
 
