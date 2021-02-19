@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="Pl-pl">
 <head>
-    <title>Javascript Game</title>
+    <title>Add score</title>
     <meta charset="UTF-8">
     <!-- http://proger.i-forge.net/The_smallest_transparent_pixel/ -->
     <link rel="icon" href="data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA=">
@@ -16,12 +16,13 @@
         <form class="add-to-ranking" action="{{ url_for("add_score_post") }}" method="post">
             <label for="name">Imię:</label>
             <input class="name" name="name" id="name" type="text">
-            <input class="score" name="score" id="score" type="hidden">
+            <input class="score" name="score" id="score" value="{{ user_score }}" type="hidden">
             <div>
                 <button class="add" type="submit">Dodaj wynik</button>
             </div>
         </form>
     </div>
+
 
 </body>
 </html>

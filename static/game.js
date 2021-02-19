@@ -160,6 +160,8 @@ const lisenCheckAnswerBtn = function () {
 
 const lisenAddScoreBtn = function (score) {
     addScoreBtn.addEventListener("click", function () {
+        let saveScoreInput = document.getElementById("save-score");
+        saveScoreInput.setAttribute("value", pointscount);
         addScore()
     })
 }
@@ -181,7 +183,7 @@ const createAnswerBtns = function () {
 }
 
 const addAnswerAttributes = function () {
-    inputEl = document.querySelectorAll("input");
+    inputEl = document.querySelectorAll(".input-answer");
     labelEl = document.querySelectorAll("label");
     newMouseOver(answersContainerNew, answerBtnClass, overAnswerBtnClass);
     // listenMouseOver(overAnswerBtnClass, labelEl);
@@ -203,7 +205,7 @@ const showQuestion = function () {
     questionTitle.textContent = `Pytanie ${questionNum}`;
     questionContent.textContent = playedLvlDict[questionIndex].content;
 
-    if (document.querySelectorAll("input").length === 0) createAnswerBtns();
+    if (document.querySelectorAll(".input-answer").length === 0) createAnswerBtns();
     addAnswerAttributes();
 }
 

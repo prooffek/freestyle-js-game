@@ -49,18 +49,27 @@ def randomise_keys(list_of_question_dicts):
 
 
 
-@app.route('/add-score', methods=["GET"])
-def add_score_get():
-    return render_template("add-score.html")
-
-
 @app.route('/add-score', methods=["POST"])
 def add_score_post():
-    user_name = request.form['name']
-    user_points = request.form['score']
-    data_manager.save_user_points(user_name, user_points)
-    print("a")
-    return redirect(url_for('index'))
+    try:
+        user_name = request.form['name']
+        user_points = request.form['score']
+        data_manager.save_user_points(user_name, user_points)
+        print("a")
+        return redirect(url_for('index'))
+    except:
+        user_score = request.form["user-score"]
+        return render_template("add-score.html", user_score=user_score)
+
+
+
+# @app.route('/add-score', methods=["POST"])
+# def add_score_post():
+#     user_name = request.form['name']
+#     user_points = request.form['score']
+#     data_manager.save_user_points(user_name, user_points)
+#     print("a")
+#     return redirect(url_for('index'))
 
 
 def create_ranking():
