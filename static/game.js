@@ -5,22 +5,28 @@ let mediumLvl = 1;
 let misticLvl = 2;
 let currentQuestion = 1;
 let maxCountQuestion = 3;
-let questionIndex = 0
+let questionIndex = 0;
 let questionNum;
 let playedLvlDict;
 let correctAnswer;
 let greenbtn;
 let pointscount = 0;
 let deltaPoints = 0;
+let nextIdQuestion;
 
 //HTML elements
 const menuEl = document.querySelector("menu");
 const questionTitle = document.getElementById("question-title");
 const questionContent = document.getElementById("question-content");
 const answersContainerNew = document.querySelector(".answers-container");
+// let inputEl = document.querySelectorAll("input");
+// let labelEl = document.querySelectorAll("label");
 const scoreInformation = document.querySelector("#score");
+const scoreInputHidden = document.getElementById("score");
+// const scoreInformation = document.querySelector("#score");
 let inputEl;
 let labelEl;
+
 
 // buttons
 const allMainBtns = document.querySelectorAll('.main-btn');
@@ -34,6 +40,7 @@ const answersContainer = document.querySelectorAll('.answers-container');
 const checkBtn = document.querySelector(".check-btn");
 const nextBtn = document.querySelector(".next-btn");
 let selectedBtn;
+const addScoreBtn = document.querySelector(".add-score")
 
 // containers
 const lvlContainer = document.querySelector('.lvls-container');
@@ -124,6 +131,11 @@ const hideOnClick = function (btnEl, container) {
            removeBtnColors();
            shuffle(playedLvlDict);
            shuffle(random_keys_list);
+           nextIdQuestion = 0;
+           questionContainer.classList.remove("hidden");
+           checkBtn.classList.remove("hidden");
+           checkContainer.classList.remove("hidden");
+           endQuizContainer.classList.add("hidden");
         }
     })
     // if (container === modalContainer) blurBackground();
@@ -136,13 +148,19 @@ const blurBackground = function () {
 const listenNextQuestionBtn = function () {
     nextBtn.addEventListener("click", function () {
         nextQuestion();
-        showQuestion(playedLvlDict);
+        if (questionNum < maxCountQuestion) showQuestion(playedLvlDict);
     })
 }
 
 const lisenCheckAnswerBtn = function () {
     checkBtn.addEventListener("click", function () {
         checkAnswer();
+    })
+}
+
+const lisenAddScoreBtn = function (score) {
+    addScoreBtn.addEventListener("click", function () {
+        addScore()
     })
 }
 
@@ -243,7 +261,7 @@ const removeBtnColors = function () {
 document.get
 
 const nextQuestion = function () {
-    let nextIdQuestion = questionIndex + 1;
+    nextIdQuestion = questionIndex + 1;
     if (nextIdQuestion <= maxCountQuestion) {
 
         checkBtn.classList.remove("hidden");
@@ -254,8 +272,10 @@ const nextQuestion = function () {
         questionContainer.classList.add("hidden");
         checkBtn.classList.add("hidden");
         nextBtn.classList.add("hidden");
+        checkContainer.classList.add("hidden");
         scoreInformation.textContent = `Zdobyłeś ${pointscount} punktów`
         endQuizContainer.classList.remove("hidden");
+        lisenAddScoreBtn(pointscount)
     }
 }
 
@@ -277,6 +297,10 @@ const shuffle = function (arrey) {
         }
     }
     return arrey;
+}
+
+const addScore = function (score) {
+    scoreInputHidden.value = score
 }
 
 // handling buttons

@@ -19,154 +19,25 @@
         <div class="answers-container"></div>
     </div>
 
-        <!-- checking correctness of the answer button -->
+        <!-- checking correctness of the answer button and go to the next page -->
     <div class="submit-container">
         <button class="check-btn" data-check-count="{{ check_count }}">Sprawdź</button>
         <button class="next-btn hidden">Kolejne pytanie</button>
     </div>
 
-    <!-- proceeding to another question -->
-    <div class="next-container">
-    </div>
-
     <div class="end-quiz hidden">
         <h3 class="text-end-game" id="score"></h3>
-        <h4 class="text-end-game">JavaScript jest ... ale nie bądź jak panda... 😉</h4>
-        <img class="panda" src="/static/images/panda.gif">
+        <h4 class="text-end-game">JavaScript jest ... <br>
+            <img class="panda" src="/static/images/panda.gif"><br>
+            ale nie bądź jak panda... 😉</h4>
 
-        <form action="add-score.html">
+        <form action="{{ url_for("add_score_get") }}" method="get">
             <button class="add-score">Zapisz wynik</button>
         </form>
-
-
-
     </div>
 
-
-<!-- ////////////////////////////////////////////////////////////////////////////////// -->
-<!-- wyświetlanie pytań w pętli for -->
-
-<!-- creates as many question-containers as there are questions -->
-{#    {% for question_index in range(questions_lvl1|length) %}#}
-{#        <!-- shows the first question containers -->#}
-{#        {% if question_index < 1 %}#}
-{#            <div class="question-container" id={{ question_index + 1 }}>#}
-{#        <!-- hides other question containers -->#}
-{#        {% else %}#}
-{#            <div class="question-container hidden" id={{ question_index + 1 }}>#}
-{#        {% endif %}#}
-{#                <!-- question number -->#}
-{#                <div class="question">#}
-{#                    <h1>Pytanie {{ question_index + 1 }}</h1>#}
-{#                </div>#}
-{#                <!-- question content -->#}
-{#                <div class="question">#}
-{#                    <p>#}
-{#                        {{ questions_lvl1[question_index].content }}#}
-{#                    </p>#}
-{#                </div>#}
-{##}
-{#                <div class="answers-container" data-correct-answer="{{ questions_lvl1[question_index].good_answer }}">#}
-{#                    <!-- creates as many answer buttons as needed and assigns appropriate content -->#}
-{#                    {% for answer_index in range(random_keys_list[question_index]|length) %}#}
-{#                        {% set key = random_keys_list[question_index][answer_index] %}#}
-{#                        <input type="radio" value="Answer-{{ answer_index + 1 }}" id="q{{ question_index + 1 }}-answer{{ answer_index + 1 }}" class="input-answer" name="answers{{ question_index + 1 }}">#}
-{#                        <label for="q{{ question_index + 1 }}-answer{{ answer_index + 1 }}" class="answer-btn">{{ questions_lvl1[question_index][key] }}</label>#}
-{#                    {% endfor %}#}
-{#                </div>#}
-{#            </div>#}
-{#    <!-- end of question-containers creation -->#}
-{#    {% endfor %}#}
-{##}
-{#    <!-- checking correctness of the answer button -->#}
-{#    <div class="submit-container">#}
-{#        <button class="check-btn" data-check-count="{{ check_count }}">Sprawdź</button>#}
-{#    </div>#}
-{##}
-{#    <!-- proceeding to another question -->#}
-{#    <div class="next-container">#}
-{#        <button class="next-btn hidden">Kolejne pytanie</button>#}
-{#    </div>#}
-
-
-<!-- ////////////////////////////////////////////////////////////////////////////////// -->
-<!-- wyświetlanie pytań bez pętli for -->
-
-{#    <div class="question-container" id="1">#}
-{#        <div class="question">#}
-{#            <h1>Pytanie 1</h1>#}
-{#        </div>#}
-{#        <div class="question">#}
-{#            <p>#}
-{#                {{ questions_lvl1[0].content }}#}
-{#            </p>#}
-{#        </div>#}
-{#        <div class="answers-container" id="question_2" data-correct-answer="{{ questions_lvl1[0].good_answer }}">#}
-{#                {% set keys = random_keys_list[0] %}#}
-{#                <input type="radio" value="Answer-1" id="q1-answer1" class="input-answer" name="answers1">#}
-{#                <label for="q1-answer1" class="answer-btn">{{ questions_lvl1[0][keys[0]] }}</label>#}
-{#                <input type="radio" value="Answer-2" id="q1-answer2" class="input-answer" name="answers1">#}
-{#                <label for="q1-answer2" class="answer-btn">{{ questions_lvl1[0][keys[1]] }}</label>#}
-{#                <input type="radio" value="Answer-3" id="q1-answer3" class="input-answer" name="answers1">#}
-{#                <label for="q1-answer3" class="answer-btn">{{ questions_lvl1[0][keys[2]] }}</label>#}
-{#                <input type="radio" value="Answer-4" id="q1-answer4" class="input-answer" name="answers1">#}
-{#                <label for="q1-answer4" class="answer-btn">{{ questions_lvl1[0][keys[3]] }}</label>#}
-
-
-
-{#    <div class="question-container hidden" id="2">#}
-{#        <div class="question">#}
-{#            <h1>Pytanie 2</h1>#}
-{#        </div>#}
-{#        <div class="question">#}
-{#            <p>#}
-{#                {{ questions_lvl1[1].content }}#}
-{#            </p>#}
-{#        </div>#}
-{#        <div class="answers-container" id="question_2" data-correct-answer="{{ questions_lvl1[1].good_answer }}">#}
-{#            {% set keys = random_keys_list[1] %}#}
-{#            <input type="radio" value="Answer-1" id="q2-answer1" class="input-answer" name="answers2">#}
-{#            <label for="q2-answer1" class="answer-btn">{{ questions_lvl1[1][keys[0]] }}</label>#}
-{#            <input type="radio" value="Answer-2" id="q2-answer2" class="input-answer" name="answers2">#}
-{#            <label for="q2-answer2" class="answer-btn">{{ questions_lvl1[1][keys[1]] }}</label>#}
-{#            <input type="radio" value="Answer-3" id="q2-answer3" class="input-answer" name="answers2">#}
-{#            <label for="q2-answer3" class="answer-btn">{{ questions_lvl1[1][keys[2]] }}</label>#}
-{#            <input type="radio" value="Answer-4" id="q2-answer4" class="input-answer" name="answers2">#}
-{#            <label for="q2-answer4" class="answer-btn">{{ questions_lvl1[1][keys[3]] }}</label>#}
-{#        </div>#}
-{#    </div>#}
-{#    <div class="question-container hidden" id="3">#}
-{#        <div class="question">#}
-{#            <h1>Pytanie 3</h1>#}
-{#        </div>#}
-{#        <div class="question">#}
-{#            <p>#}
-{#                {{ questions_lvl1[2].content }}#}
-{#            </p>#}
-{#        </div>#}
-{#        <div class="answers-container" data-correct-answer="{{ questions_lvl1[2].good_answer }}" data-question-index="2">#}
-{#            {% set keys = random_keys_list[2] %}#}
-{#            <input type="radio" value="Answer-1" id="q3-answer1" class="input-answer" name="answers3">#}
-{#            <label for="q3-answer1" class="answer-btn">{{ questions_lvl1[2][keys[0]] }}</label>#}
-{#            <input type="radio" value="Answer-2" id="q3-answer2" class="input-answer" name="answers3">#}
-{#            <label for="q3-answer2" class="answer-btn">{{ questions_lvl1[2][keys[1]] }}</label>#}
-{#            <input type="radio" value="Answer-3" id="q3-answer3" class="input-answer" name="answers3">#}
-{#            <label for="q3-answer3" class="answer-btn">{{ questions_lvl1[2][keys[2]] }}</label>#}
-{#            <input type="radio" value="Answer-4" id="q3-answer4" class="input-answer" name="answers3">#}
-{#            <label for="q3-answer4" class="answer-btn">{{ questions_lvl1[2][keys[3]] }}</label>#}
-{#        </div>#}
-{#    </div>#}
-
-{#    <div class="submit-container">#}
-{#        <button class="check-btn" data-check-count="{{ check_count }}">Sprawdź</button>#}
-{#    </div>#}
-{##}
-{#    <div class="next-container">#}
-{#        <button class="next-btn hidden">Kolejne pytanie</button>#}
-{#    </div>#}
 
 </div>
 </main>
 
-{#<script type="text/javascript" src="/static/game.js"></script>#}
 {% endblock %}

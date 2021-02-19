@@ -8,6 +8,20 @@
     <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
-    <h1>tu coś będzie</h1>
+    <img src="/static/images/quiz-2058883.png" alt="quiz-header">
+    <h1>JavaScript Game</h1>
+    <h2>Zapnij pasy, bo czeka Cię ostra jazda bez trzymanki!!!</h2>
+    <div class="add-score-container">
+        <h4 class="text-end-game">Dodaj swój wynik</h4>
+        <form class="add-to-ranking" action="{{ url_for("add_score_post") }}" method="post">
+            <label for="name">Imię:</label>
+            <input class="name" type="text">
+            <input class="score" id="score" type="hidden">
+            <div>
+                <button class="add" type="submit">Dodaj wynik</button>
+            </div>
+        </form>
+    </div>
+
 </body>
 </html>
