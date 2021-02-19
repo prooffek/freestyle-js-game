@@ -107,6 +107,7 @@ const showOnClick = function (btnEl, container) {
            deltaPoints = 5;
        }
 
+       maxCountQuestion = playedLvlDict.length;
        showQuestion(playedLvlDict);
     });
     // if (container === modalContainer) blurBackground();
@@ -257,6 +258,7 @@ const nextQuestion = function () {
         endQuizContainer.classList.remove("hidden");
     }
 }
+
 function showHideRanking(elbtn, container){
     elbtn.addEventListener('click',function (){
         if (container.style.display ==="none"){

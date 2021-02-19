@@ -156,7 +156,7 @@ menu {
     transform: translate(-50%, -50%);
     width: 80%;
     min-width: 700px;
-    min-height: 30vh;
+    min-height: 70vh;
     background-color: white;
     border-radius: 5px;
     box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.3);
@@ -164,7 +164,7 @@ menu {
 }
 
 .modal-background-color {
-    height: 100%;
+    min-height: 70vh;
     width: 100%;
     background-color: rgba(0, 0, 20, 0.2);
     padding: 2rem;
