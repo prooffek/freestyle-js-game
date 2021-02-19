@@ -19,6 +19,7 @@ const questionContent = document.getElementById("question-content");
 const answersContainerNew = document.querySelector(".answers-container");
 let inputEl = document.querySelectorAll("input");
 let labelEl = document.querySelectorAll("label");
+const scoreInformation = document.querySelector("#score")
 
 // buttons
 const allMainBtns = document.querySelectorAll('.main-btn');
@@ -220,24 +221,18 @@ const removeBtnColors = function () {
 }
 
 const nextQuestion = function () {
-    let nextIdQuestion = currentQuestion + 1;
+    let nextIdQuestion = questionIndex + 1;
     if (nextIdQuestion <= maxCountQuestion) {
 
-        // let divCurrentQuestion = document.getElementById(currentQuestion.toString());
-        // let divNextQuestion = document.getElementById(nextIdQuestion.toString());
-        //
-        // currentQuestion++;
-        // divCurrentQuestion.classList.add("hidden");
-        // divNextQuestion.classList.remove("hidden");
         checkBtn.classList.remove("hidden");
         nextBtn.classList.add("hidden");
-        // lisenCheckAnswerBtn();
         removeBtnColors();
     }
-    if (currentQuestion === maxCountQuestion) {
+    else {
         questionContainer.classList.add("hidden");
         checkBtn.classList.add("hidden");
         nextBtn.classList.add("hidden");
+        scoreInformation.textContent = `Zdobyłeś ${pointscount} punktów`
         endQuizContainer.classList.remove("hidden");
     }
 }

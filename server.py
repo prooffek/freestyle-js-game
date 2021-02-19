@@ -9,25 +9,6 @@ app = Flask(__name__)
 if __name__ == "__main__":
     app.run()
 
-lvl1 = [{"question_content": "pytanie 1",
-         "correct_answer": "odp 1",
-         "false_answer1": "false odp 1",
-         "false_answer2": "false odp 2",
-         "false_answer3": "false odp 3"},
-
-        {"question_content": "pytanie 2",
-         "correct_answer": "odp 1",
-         "false_answer1": "false odp 1",
-         "false_answer2": "false odp 2",
-         "false_answer3": "false odp 3"},
-
-        {"question_content": "pytanie 3",
-         "correct_answer": "odp 1",
-         "false_answer1": "false odp 1",
-         "false_answer2": "false odp 2",
-         "false_answer3": "false odp 3"}
-        ]
-
 # lvl1 = [{pytani1}, {pytanie2}, {pytanie3}]
 
 
