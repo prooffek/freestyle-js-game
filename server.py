@@ -30,7 +30,7 @@ def create_list(lvlNum):
     for i in range(0, questions_num):
         question_id = questions[i]["id"]
         single_qa["content"] = questions[i]["question"]
-        answer = data_manager.get_answers_to_question(question_id)
+        answer = data_manager.get_answers_to_question(question_id + 1)
         single_qa["good_answer"] = answer[0]["answer"]
         single_qa["false_answer1"] = answer[1]["answer"]
         single_qa["false_answer2"] = answer[2]["answer"]
