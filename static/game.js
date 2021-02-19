@@ -20,6 +20,7 @@ const answersContainerNew = document.querySelector(".answers-container");
 let inputEl = document.querySelectorAll("input");
 let labelEl = document.querySelectorAll("label");
 const scoreInformation = document.querySelector("#score")
+const scoreInputHidden = document.getElementById("score")
 
 // buttons
 const allMainBtns = document.querySelectorAll('.main-btn');
@@ -32,6 +33,7 @@ const answersContainer = document.querySelectorAll('.answers-container');
 const checkBtn = document.querySelector(".check-btn");
 const nextBtn = document.querySelector(".next-btn");
 let selectedBtn;
+const addScoreBtn = document.querySelector(".add-score")
 
 // containers
 const lvlContainer = document.querySelector('.lvls-container');
@@ -124,6 +126,12 @@ const listenNextQuestionBtn = function () {
 const lisenCheckAnswerBtn = function () {
     checkBtn.addEventListener("click", function () {
         checkAnswer();
+    })
+}
+
+const lisenAddScoreBtn = function (score) {
+    addScoreBtn.addEventListener("click", function () {
+        addScore()
     })
 }
 
@@ -234,6 +242,7 @@ const nextQuestion = function () {
         nextBtn.classList.add("hidden");
         scoreInformation.textContent = `Zdobyłeś ${pointscount} punktów`
         endQuizContainer.classList.remove("hidden");
+        lisenAddScoreBtn(pointscount)
     }
 }
 function showHideRanking(elbtn, container){
@@ -254,6 +263,10 @@ const shuffle = function (arrey) {
         }
     }
     return arrey;
+}
+
+const addScore = function (score) {
+    scoreInputHidden.value = score
 }
 
 // handling buttons

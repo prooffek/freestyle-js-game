@@ -49,10 +49,14 @@ def randomise_keys(list_of_question_dicts):
 
 
 
-@app.route('/add-score')
-def add_score():
-    pass
+@app.route('/add-score', methods=["GET"])
+def add_score_get():
+    return render_template("add-score.html")
 
+
+@app.route('/add-score', methods=["POST"])
+def add_score_post():
+    pass
 
 def create_ranking():
     ranking = []
