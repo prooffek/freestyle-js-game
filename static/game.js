@@ -14,6 +14,7 @@ let pointscount = 0;
 let deltaPoints = 0;
 
 //HTML elements
+// const menuEl = document.querySelector("menu");
 const questionTitle = document.getElementById("question-title");
 const questionContent = document.getElementById("question-content");
 const answersContainerNew = document.querySelector(".answers-container");
@@ -25,6 +26,7 @@ const allMainBtns = document.querySelectorAll('.main-btn');
 const lvlBtns = document.querySelectorAll('.lvl-btn');
 const [newGameBtn] = document.querySelectorAll('button');
 const rankListBtn = document.getElementById("ranking-list");
+// const exitButton = document.querySelector(".exit-div");
 const exitButton = document.querySelector(".exit-btn");
 // const allInputsAnswers = document.querySelectorAll('.input-answer');
 const answersContainer = document.querySelectorAll('.answers-container');
@@ -43,16 +45,29 @@ const endQuizContainer = document.querySelector(".end-quiz")
 const questionContainer = document.querySelector(".question-container")
 const tableContainer = document.querySelector('.table-container');
 
-
 // classes
 const overMainBtnClass = 'over-main-btn';
 const overLvlBtnClass = 'over-lvl-btn';
-const overExitBtn = 'over-exit-btn';
+const overExitBtnClass = 'over-exit-btn';
 const overAnswerBtnClass = 'over-answer-btn';
 const chosenAnswerBtn = 'input-answer:checked+label';
+// const mainBtnClass = "main-btn";
+// const lvlBtnClass = "lvl-btn";
+// const exitBtnClass = "exit-img";
 
-//questions and answers for different levels
-// const objectForLvl1 = mainQuestionContainer.dataset.lvl1;
+// // Arrays
+// const mouseOverArray = [[menuEl, mainBtnClass, overMainBtnClass],
+//                         [menuEl, lvlBtnClass, overLvlBtnClass],
+//                         [exitButton, exitBtnClass, overExitBtnClass]];
+
+// const newMouseOver = function (parentEl, elClass, overBtnClass) {
+//     parentEl.addEventListener("mouseover", function (event) {
+//         if (event.target.classList.contains(elClass)) event.target.classList.add(overBtnClass);
+//     })
+//     parentEl.addEventListener("mouseout", function (event) {
+//         if (event.target.classList.contains(elClass)) event.target.classList.remove(overBtnClass);
+//     })
+// }
 
 // Listen functions
 const listenMouseOver = function (className, arrayName) {
@@ -263,6 +278,11 @@ const shuffle = function (arrey) {
 
 // handling buttons
 const btnHandler = function () {
+    // mouseOverArray.forEach( function (el) {
+    //     let [parentEl, elClass, overBtnClass] = el;
+    //     newMouseOver(parentEl, elClass, overBtnClass);
+    // })
+
     listenMouseOver(overMainBtnClass, allMainBtns);
     listenMouseOver(overLvlBtnClass, lvlBtns);
     listenMouseOver(overExitBtn, [exitButton]);

@@ -268,8 +268,8 @@ menu {
     position: absolute;
     top: 0;
     right: 0;
-    height: 100%;
-    width: 100%;
+    min-height: 100%;
+    min-width: 100%;
     background-color: rgba(0, 0, 0, 0.4);
     backdrop-filter: blur(3px);
     z-index: 5;
