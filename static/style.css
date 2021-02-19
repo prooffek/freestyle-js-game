@@ -51,7 +51,7 @@ h2 {
     margin: 0.5rem 0 4rem 0;
 }
 
-menu {
+menu, .add-score-container {
     width: 600px;
     min-height: 200px;
     background: rgba(255, 255, 255, 0.9);
@@ -347,3 +347,34 @@ table, th, td {
 
 }
 
+.add-to-ranking label {
+    font-family: "Times New Roman";
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.name {
+    margin-top: 20px;
+    font-family: "Times New Roman";
+    font-size: 30px;
+    font-weight: bold;
+    background-color: lightblue;
+
+}
+
+.add {
+    height: 50%;
+    min-width: 12rem;
+    background-color: deepskyblue;
+    border-radius: 10px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    font-family: "Times New Roman";
+    text-align: center;
+    cursor: pointer;
+    color: white;
+    margin-left: 30%;
+    margin-top: 40px;
+    margin-bottom: 10px;
+    padding: 7px;
+}
