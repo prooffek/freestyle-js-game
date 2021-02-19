@@ -70,17 +70,17 @@ VALUES (19, 'oba warunki będą fałszywe', 4, false);
 
 -- Pytanie 6
 
--- INSERT INTO answers (id, answer, id_question, correct)
--- VALUES (20, '', 5, true);
---
--- INSERT INTO answers (id, answer, id_question, correct)
--- VALUES (21, '', 5, false);
---
--- INSERT INTO answers (id, answer, id_question, correct)
--- VALUES (22, '', 5, false);
---
--- INSERT INTO answers (id, answer, id_question, correct)
--- VALUES (23, '', 5, false);
+INSERT INTO answers (id, answer, id_question, correct)
+VALUES (20, 'for (i=0; i <= 5; i++)', 5, true);
+
+INSERT INTO answers (id, answer, id_question, correct)
+VALUES (21, 'for (i= 0 to 5)', 5, false);
+
+INSERT INTO answers (id, answer, id_question, correct)
+VALUES (22, 'for (i <=5; i++)', 5, false);
+
+INSERT INTO answers (id, answer, id_question, correct)
+VALUES (23, 'for (i = 0; i <=5)', 5, false);
 
 -- Pytanie 7
 
@@ -140,31 +140,31 @@ VALUES (39, '"5-4"', 9, false);
 
 -- Pytanie 11
 
--- INSERT INTO answers (id, answer, id_question, correct)
--- VALUES (40, '', 10, true);
---
--- INSERT INTO answers (id, answer, id_question, correct)
--- VALUES (41, '', 10, false);
---
--- INSERT INTO answers (id, answer, id_question, correct)
--- VALUES (42, '', 10, false);
---
--- INSERT INTO answers (id, answer, id_question, correct)
--- VALUES (43, '', 10, false);
+INSERT INTO answers (id, answer, id_question, correct)
+VALUES (40, 'Math.round(7.25)', 10, true);
+
+INSERT INTO answers (id, answer, id_question, correct)
+VALUES (41, 'rnd(7.25)', 10, false);
+
+INSERT INTO answers (id, answer, id_question, correct)
+VALUES (42, 'round(7.25)', 10, false);
+
+INSERT INTO answers (id, answer, id_question, correct)
+VALUES (43, 'Math.rnd(7.25)', 10, false);
 
 -- Pytanie 12
 
--- INSERT INTO answers (id, answer, id_question, correct)
--- VALUES (44, '', 11, true);
---
--- INSERT INTO answers (id, answer, id_question, correct)
--- VALUES (45, '', 11, false);
---
--- INSERT INTO answers (id, answer, id_question, correct)
--- VALUES (46, '', 11, false);
---
--- INSERT INTO answers (id, answer, id_question, correct)
--- VALUES (47, '', 11, false);
+INSERT INTO answers (id, answer, id_question, correct)
+VALUES (44, 'Math.max(x,y)', 11, true);
+
+INSERT INTO answers (id, answer, id_question, correct)
+VALUES (45, 'max(x,y)', 11, false);
+
+INSERT INTO answers (id, answer, id_question, correct)
+VALUES (46, 'Math.ceil(x,y)', 11, false);
+
+INSERT INTO answers (id, answer, id_question, correct)
+VALUES (47, 'top(x,y)', 11, false);
 
 -- Pytanie 13
 
@@ -224,28 +224,28 @@ VALUES (63, 'NaN', 15, false);
 
 -- Pytanie 17
 
--- INSERT INTO answers (id, answer, id_question, correct)
--- VALUES (64, '', 16, true);
---
--- INSERT INTO answers (id, answer, id_question, correct)
--- VALUES (65, '', 16, false);
---
--- INSERT INTO answers (id, answer, id_question, correct)
--- VALUES (66, '', 16, false);
---
--- INSERT INTO answers (id, answer, id_question, correct)
--- VALUES (67, '', 16, false);
+INSERT INTO answers (id, answer, id_question, correct)
+VALUES (64, '"number"', 16, true);
+
+INSERT INTO answers (id, answer, id_question, correct)
+VALUES (65, 'error', 16, false);
+
+INSERT INTO answers (id, answer, id_question, correct)
+VALUES (66, 'undefined', 16, false);
+
+INSERT INTO answers (id, answer, id_question, correct)
+VALUES (67, 'null', 16, false);
 
 -- Pytanie 18
 
--- INSERT INTO answers (id, answer, id_question, correct)
--- VALUES (68, '', 17, true);
---
--- INSERT INTO answers (id, answer, id_question, correct)
--- VALUES (69, '', 17, false);
---
--- INSERT INTO answers (id, answer, id_question, correct)
--- VALUES (70, '', 17, false);
---
--- INSERT INTO answers (id, answer, id_question, correct)
--- VALUES (71, '', 17, false);
+INSERT INTO answers (id, answer, id_question, correct)
+VALUES (68, '1', 17, true);
+
+INSERT INTO answers (id, answer, id_question, correct)
+VALUES (69, '"2-true"', 17, false);
+
+INSERT INTO answers (id, answer, id_question, correct)
+VALUES (70, 'syntaxError', 17, false);
+
+INSERT INTO answers (id, answer, id_question, correct)
+VALUES (71, '2', 17, false);
