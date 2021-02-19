@@ -7,7 +7,7 @@ LEVELS = [1, 2, 3]
 app = Flask(__name__)
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
 
 # lvl1 = [{pytani1}, {pytanie2}, {pytanie3}]
 
@@ -56,7 +56,12 @@ def add_score_get():
 
 @app.route('/add-score', methods=["POST"])
 def add_score_post():
-    pass
+    user_name = request.form['name']
+    user_points = request.form['score']
+    data_manager.save_user_points(user_name, user_points)
+    print("a")
+    return redirect(url_for('index'))
+
 
 def create_ranking():
     ranking = []

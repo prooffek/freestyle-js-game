@@ -34,6 +34,27 @@ def get_ranking(cursor: RealDictCursor):
     """
     cursor.execute(query)
     return cursor.fetchall()
+
+
+@connection.connection_handler
+def save_user_points(cursor: RealDictCursor, name, points):
+    query_max_id = """
+        SELECT MAX(id) FROM ranking
+    """
+    cursor.execute(query_max_id)
+    max_id = cursor.fetchone()
+    new_id = max_id['max'] + 1
+    query = """
+    INSERT INTO ranking (id, name, points)
+    VALUES (%(id)s, %(name)s, %(points)s)
+    """
+    param = {
+        "id" : new_id,
+        "name" : name,
+        "points" : points
+    }
+    cursor.execute(query, param)
+
 #
 # @connection.connection_handler
 # def questions(cursor:RealDictCursor, lvl: int):

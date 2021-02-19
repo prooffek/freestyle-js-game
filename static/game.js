@@ -300,9 +300,8 @@ const shuffle = function (arrey) {
 }
 
 const addScore = function (score) {
-    scoreInputHidden.value = score
+    scoreInputHidden.setAttribute("value", score)
 }
-
 // handling buttons
 const btnHandler = function () {
     mouseOverArray.forEach( function (el) {
