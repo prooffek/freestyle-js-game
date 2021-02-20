@@ -261,7 +261,7 @@ menu, .add-score-container {
     z-index: 5;
 }
 
-.check-btn, .next-btn {
+.check-btn, .next-btn, .end-btn {
     height: 50%;
     min-width: 12rem;
     background-color: deepskyblue;

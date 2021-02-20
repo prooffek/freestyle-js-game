@@ -32,7 +32,8 @@ const exitButton = document.querySelector(".exit-div");
 const checkBtn = document.querySelector(".check-btn");
 const nextBtn = document.querySelector(".next-btn");
 let selectedBtn;
-const addScoreBtn = document.querySelector(".add-score")
+const addScoreBtn = document.querySelector(".add-score");
+const endQuizBtn = document.querySelector(".end-btn");
 
 // containers
 const lvlContainer = document.querySelector('.lvls-container');
@@ -111,7 +112,7 @@ const showOnClick = function (btnEl, container) {
     btnEl.addEventListener("click", function () {
        container.classList.remove('hidden');
        blurBackground();
-       establishGameQuestions()
+       establishGameQuestions(btnEl)
        maxCountQuestion = playedLvlDict.length;
        showQuestion(playedLvlDict);
     });
@@ -123,9 +124,15 @@ const exitOnClick = function (btnEl, container) {
     })
 }
 
+const lisenEndQuizBtn = function () {
+    endQuizBtn.addEventListener("click", function () {
+        endQuiz()
+    })
+}
+
 /////////////////////////////////////////////////////////////////////////////////////////////
 //Functions inside listeners
-const establishGameQuestions = function () {
+const establishGameQuestions = function (btnEl) {
     if (btnEl === lvlBtns[easyLvl]) {
            playedLvlDict = lvl1;
            deltaPoints = 1;
@@ -193,34 +200,40 @@ const checkAnswer = function () {
                 }
             }
         }
-        checkBtn.classList.add("hidden");
-        nextBtn.classList.remove("hidden");
-        listenNextQuestionBtn();
-        questionIndex++;
+                if (questionNum < maxCountQuestion) {
+            checkBtn.classList.add("hidden");
+            nextBtn.classList.remove("hidden");
+            listenNextQuestionBtn();
+            questionIndex++;
+        } else if (questionNum === maxCountQuestion) {
+            checkBtn.classList.add("hidden");
+            endQuizBtn.classList.remove("hidden");
+            lisenEndQuizBtn();
+
+    }
 }
 
 
 const nextQuestion = function () {
-    nextIdQuestion = questionIndex + 1;
-    if (nextIdQuestion <= maxCountQuestion) {
-
-        checkBtn.classList.remove("hidden");
-        nextBtn.classList.add("hidden");
-        removeBtnColors();
-    }
-    else {
-        questionContainer.classList.add("hidden");
-        checkBtn.classList.add("hidden");
-        nextBtn.classList.add("hidden");
-        checkContainer.classList.add("hidden");
-        scoreInformation.textContent = `Ilość zdobytych punktów: ${pointscount}`
-        endQuizContainer.classList.remove("hidden");
-        lisenAddScoreBtn(pointscount)
-    }
+    // nextIdQuestion = questionIndex + 1;
+    checkBtn.classList.remove("hidden");
+    nextBtn.classList.add("hidden");
+    removeBtnColors();
 }
 
 const addScore = function (score) {
     scoreInputHidden.setAttribute("value", score)
+}
+
+function endQuiz() {
+    questionContainer.classList.add("hidden");
+    checkBtn.classList.add("hidden");
+    nextBtn.classList.add("hidden");
+    checkContainer.classList.add("hidden");
+    endQuizBtn.classList.add("hidden")
+    scoreInformation.textContent = `Zdobyłeś ${pointscount} punktów`;
+    endQuizContainer.classList.remove("hidden");
+    lisenAddScoreBtn();
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////
