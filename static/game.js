@@ -3,8 +3,7 @@
 let easyLvl = 0;
 let mediumLvl = 1;
 let misticLvl = 2;
-let currentQuestion = 1;
-let maxCountQuestion = 3;
+let maxCountQuestion;
 let questionIndex = 0;
 let questionNum;
 let playedLvlDict;
@@ -19,24 +18,17 @@ const menuEl = document.querySelector("menu");
 const questionTitle = document.getElementById("question-title");
 const questionContent = document.getElementById("question-content");
 const answersContainerNew = document.querySelector(".answers-container");
-// let inputEl = document.querySelectorAll("input");
-// let labelEl = document.querySelectorAll("label");
 const scoreInformation = document.querySelector("#score");
 const scoreInputHidden = document.getElementById("score");
-// const scoreInformation = document.querySelector("#score");
 let inputEl;
 let labelEl;
 
 
 // buttons
-const allMainBtns = document.querySelectorAll('.main-btn');
 const lvlBtns = document.querySelectorAll('.lvl-btn');
 const [newGameBtn] = document.querySelectorAll('button');
 const rankListBtn = document.getElementById("ranking-list");
 const exitButton = document.querySelector(".exit-div");
-// const exitButton = document.querySelector(".exit-btn");
-// const allInputsAnswers = document.querySelectorAll('.input-answer');
-const answersContainer = document.querySelectorAll('.answers-container');
 const checkBtn = document.querySelector(".check-btn");
 const nextBtn = document.querySelector(".next-btn");
 let selectedBtn;
@@ -47,8 +39,6 @@ const lvlContainer = document.querySelector('.lvls-container');
 const modalContainer = document.querySelector('.modal');
 const blurContainer = document.querySelector(".blur-background");
 const checkContainer = document.querySelector(".submit-container");
-const nextQuestionContainer = document.querySelector(".next-container");
-const mainQuestionContainer = document.querySelector("main");
 const endQuizContainer = document.querySelector(".end-quiz")
 const questionContainer = document.querySelector(".question-container")
 const tableContainer = document.querySelector('.table-container');
@@ -69,9 +59,8 @@ const mouseOverArray = [[menuEl, mainBtnClass, overMainBtnClass],
                         [menuEl, lvlBtnClass, overLvlBtnClass],
                         [exitButton, exitBtnClass, overExitBtnClass]];
 
-
+/////////////////////////////////////////////////////////////////////////////////////////////
 // Listen functions
-
 const newMouseOver = function (parentEl, elClass, overBtnClass) {
     parentEl.addEventListener("mouseover", function (event) {
         if (event.target.classList.contains(elClass)) event.target.classList.add(overBtnClass);
@@ -81,68 +70,16 @@ const newMouseOver = function (parentEl, elClass, overBtnClass) {
     })
 }
 
-// const listenMouseOver = function (className, arrayName) {
-//     for (let i = 0; i < arrayName.length; i++) {
-//         arrayName[i].addEventListener("mouseover", function () {
-//             arrayName[i].classList.add(className);
-//         })
-//         arrayName[i].addEventListener("mouseout", function () {
-//             arrayName[i].classList.remove(className);
-//         })
-//     }
-// }
-
 const showHideOnClick = function (buttonEl, container) {
     buttonEl.addEventListener("click", function () {
        container.classList.toggle('hidden');
     });
 }
 
-const showOnClick = function (btnEl, container) {
-    btnEl.addEventListener("click", function () {
-       container.classList.remove('hidden');
-       blurBackground();
-
-       if (btnEl === lvlBtns[easyLvl]) {
-           playedLvlDict = lvl1;
-           deltaPoints = 1;
-       } else if (btnEl === lvlBtns[mediumLvl]) {
-           playedLvlDict = lvl2;
-           deltaPoints = 3;
-       } else if (btnEl === lvlBtns[misticLvl]) {
-           playedLvlDict = lvl3;
-           deltaPoints = 5;
-       }
-
-       maxCountQuestion = playedLvlDict.length;
-       showQuestion(playedLvlDict);
-    });
-    // if (container === modalContainer) blurBackground();
-}
-
-const hideOnClick = function (btnEl, container) {
-    btnEl.addEventListener("click", function () {
-       container.classList.add('hidden');
-       blurBackground();
-
-       if (btnEl === exitButton) {
-           questionIndex = 0;
-           pointscount = 0;
-           removeBtnColors();
-           shuffle(playedLvlDict);
-           shuffle(random_keys_list);
-           nextIdQuestion = 0;
-           questionContainer.classList.remove("hidden");
-           checkBtn.classList.remove("hidden");
-           checkContainer.classList.remove("hidden");
-           endQuizContainer.classList.add("hidden");
-        }
+const lisenCheckAnswerBtn = function () {
+    checkBtn.addEventListener("click", function () {
+        checkAnswer();
     })
-    // if (container === modalContainer) blurBackground();
-}
-
-const blurBackground = function () {
-    blurContainer.classList.toggle('hidden');
 }
 
 const listenNextQuestionBtn = function () {
@@ -152,18 +89,150 @@ const listenNextQuestionBtn = function () {
     })
 }
 
-const lisenCheckAnswerBtn = function () {
-    checkBtn.addEventListener("click", function () {
-        checkAnswer();
-    })
-}
-
 const lisenAddScoreBtn = function (score) {
     addScoreBtn.addEventListener("click", function () {
         let saveScoreInput = document.getElementById("save-score");
         saveScoreInput.setAttribute("value", pointscount);
         addScore()
     })
+}
+
+function showHideRanking(elbtn, container){
+    elbtn.addEventListener('click',function (){
+        if (container.style.display ==="none"){
+        container.style.display = "block";
+    }else{
+        container.style.display = "none";
+    }
+    })
+}
+
+const showOnClick = function (btnEl, container) {
+    btnEl.addEventListener("click", function () {
+       container.classList.remove('hidden');
+       blurBackground();
+       establishGameQuestions()
+       maxCountQuestion = playedLvlDict.length;
+       showQuestion(playedLvlDict);
+    });
+}
+
+const exitOnClick = function (btnEl, container) {
+    btnEl.addEventListener("click", function () {
+       closeModalAndRestartCounters(container)
+    })
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+//Functions inside listeners
+const establishGameQuestions = function () {
+    if (btnEl === lvlBtns[easyLvl]) {
+           playedLvlDict = lvl1;
+           deltaPoints = 1;
+       } else if (btnEl === lvlBtns[mediumLvl]) {
+           playedLvlDict = lvl2;
+           deltaPoints = 3;
+       } else if (btnEl === lvlBtns[misticLvl]) {
+           playedLvlDict = lvl3;
+           deltaPoints = 5;
+       }
+}
+
+const closeModalAndRestartCounters = function (container) {
+    container.classList.add('hidden');
+    blurBackground();
+    questionIndex = 0;
+    pointscount = 0;
+    removeBtnColors();
+    shuffle(playedLvlDict);
+    shuffle(random_keys_list);
+    nextIdQuestion = 0;
+    questionContainer.classList.remove("hidden");
+    checkBtn.classList.remove("hidden");
+    checkContainer.classList.remove("hidden");
+    endQuizContainer.classList.add("hidden");
+}
+
+const blurBackground = function () {
+    blurContainer.classList.toggle('hidden');
+}
+
+const removeBtnColors = function () {
+    if (selectedBtn) selectedBtn.style.backgroundColor = null;
+    if (greenbtn) greenbtn.style.backgroundColor = null;
+    inputEl.forEach(el => el.checked = false);
+}
+
+const shuffle = function (arrey) {
+    for (let tour = 0; tour < Math.floor(Math.random() * (6 + 1)); tour++) {
+        for (let i = arrey.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [arrey[i], arrey[j]] = [arrey[j], arrey[i]];
+        }
+    }
+    return arrey;
+}
+
+const checkAnswer = function () {
+        selectedBtn = document.querySelectorAll(`.${chosenAnswerBtn}`)[0];
+
+       if (!selectedBtn) {
+           return
+       } else if (correctAnswer === selectedBtn.textContent) {
+            selectedBtn.style.backgroundColor = "rgba(0, 255, 120, 0.7)";
+            pointscount += deltaPoints;
+            console.log(pointscount);
+        } else {
+            selectedBtn.style.backgroundColor = "rgba(255, 0, 0, 0.7)";
+
+            let siblingAnswers = selectedBtn.parentElement.children;
+            for (let i = 0; i < siblingAnswers.length; i++) {
+                if (siblingAnswers[i].textContent === correctAnswer) {
+                    greenbtn = siblingAnswers[i];
+                    greenbtn.style.backgroundColor = "rgba(0, 255, 120, 0.7)";
+                }
+            }
+        }
+        checkBtn.classList.add("hidden");
+        nextBtn.classList.remove("hidden");
+        listenNextQuestionBtn();
+        questionIndex++;
+}
+
+
+const nextQuestion = function () {
+    nextIdQuestion = questionIndex + 1;
+    if (nextIdQuestion <= maxCountQuestion) {
+
+        checkBtn.classList.remove("hidden");
+        nextBtn.classList.add("hidden");
+        removeBtnColors();
+    }
+    else {
+        questionContainer.classList.add("hidden");
+        checkBtn.classList.add("hidden");
+        nextBtn.classList.add("hidden");
+        checkContainer.classList.add("hidden");
+        scoreInformation.textContent = `Ilość zdobytych punktów: ${pointscount}`
+        endQuizContainer.classList.remove("hidden");
+        lisenAddScoreBtn(pointscount)
+    }
+}
+
+const addScore = function (score) {
+    scoreInputHidden.setAttribute("value", score)
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+//Show questions on page
+const showQuestion = function () {
+    questionNum = questionIndex + 1;
+    correctAnswer = playedLvlDict[questionIndex].good_answer;
+    questionTitle.textContent = `Pytanie ${questionNum}`;
+    questionContent.textContent = playedLvlDict[questionIndex].content;
+
+    if (document.querySelectorAll(".input-answer").length === 0) createAnswerBtns();
+    addAnswerAttributes();
 }
 
 const createAnswerBtns = function () {
@@ -186,7 +255,6 @@ const addAnswerAttributes = function () {
     inputEl = document.querySelectorAll(".input-answer");
     labelEl = document.querySelectorAll("label");
     newMouseOver(answersContainerNew, answerBtnClass, overAnswerBtnClass);
-    // listenMouseOver(overAnswerBtnClass, labelEl);
 
     for (let i = 0; i < inputEl.length; i++) {
         let key = random_keys_list[questionIndex][i]
@@ -199,111 +267,7 @@ const addAnswerAttributes = function () {
     }
 }
 
-const showQuestion = function () {
-    questionNum = questionIndex + 1;
-    correctAnswer = playedLvlDict[questionIndex].good_answer;
-    questionTitle.textContent = `Pytanie ${questionNum}`;
-    questionContent.textContent = playedLvlDict[questionIndex].content;
-
-    if (document.querySelectorAll(".input-answer").length === 0) createAnswerBtns();
-    addAnswerAttributes();
-}
-
-// const chosenAnswer = function (className, arrayName) {
-//         for (let i = 0; i < arrayName.length; i++) {
-//             if (answersContainer[0].dataset.correctAnswer === arrayName[i].textContent) {
-//                 console.log(`click!${i}`)
-//                 arrayName[i].addEventListener("click", function () {
-//                     arrayName[i].style.backgroundColor = "aqua";
-//                 })
-//                 // arrayName[i].addEventListener("click", function () {
-//                 //     allAnswerBtns[i].classList.toggle(className)
-//                 // })
-//             }
-//         }
-// }
-// }
-const checkAnswer = function () {
-        selectedBtn = document.querySelectorAll(`.${chosenAnswerBtn}`)[0];
-        // let selectedBtn = selectedBtnArrey[questionIndex]
-        // console.log(selectedBtn)
-        // selectedBtn.classList.remove(chosenAnswerBtn);
-        // questionIndex = mainQuestionContainer.dataset.questionIndex;
-
-       if (!selectedBtn) {
-           return
-       } else if (correctAnswer === selectedBtn.textContent) {
-            selectedBtn.style.backgroundColor = "rgba(0, 255, 120, 0.7)";
-            pointscount += deltaPoints;
-            console.log(pointscount);
-        } else {
-            selectedBtn.style.backgroundColor = "rgba(255, 0, 0, 0.7)";
-
-            let siblingAnswers = selectedBtn.parentElement.children;
-            for (let i = 0; i < siblingAnswers.length; i++) {
-                if (siblingAnswers[i].textContent === correctAnswer) {
-                    greenbtn = siblingAnswers[i];
-                    greenbtn.style.backgroundColor = "rgba(0, 255, 120, 0.7)";
-                }
-            }
-        }
-        // selectedBtn.checked = false
-        checkBtn.classList.add("hidden");
-        nextBtn.classList.remove("hidden");
-        listenNextQuestionBtn();
-        questionIndex++;
-}
-
-const removeBtnColors = function () {
-    if (selectedBtn) selectedBtn.style.backgroundColor = null;
-    if (greenbtn) greenbtn.style.backgroundColor = null;
-    inputEl.forEach(el => el.checked = false);
-}
-
-document.get
-
-const nextQuestion = function () {
-    nextIdQuestion = questionIndex + 1;
-    if (nextIdQuestion <= maxCountQuestion) {
-
-        checkBtn.classList.remove("hidden");
-        nextBtn.classList.add("hidden");
-        removeBtnColors();
-    }
-    else {
-        questionContainer.classList.add("hidden");
-        checkBtn.classList.add("hidden");
-        nextBtn.classList.add("hidden");
-        checkContainer.classList.add("hidden");
-        scoreInformation.textContent = `Zdobyłeś ${pointscount} punktów`
-        endQuizContainer.classList.remove("hidden");
-        lisenAddScoreBtn(pointscount)
-    }
-}
-
-function showHideRanking(elbtn, container){
-    elbtn.addEventListener('click',function (){
-        if (container.style.display ==="none"){
-        container.style.display = "block";
-    }else{
-        container.style.display = "none";
-    }
-    })
-}
-
-const shuffle = function (arrey) {
-    for (let tour = 0; tour < Math.floor(Math.random() * (6 + 1)); tour++) {
-        for (let i = arrey.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [arrey[i], arrey[j]] = [arrey[j], arrey[i]];
-        }
-    }
-    return arrey;
-}
-
-const addScore = function (score) {
-    scoreInputHidden.setAttribute("value", score)
-}
+/////////////////////////////////////////////////////////////////////////////////////////////
 // handling buttons
 const btnHandler = function () {
     mouseOverArray.forEach( function (el) {
@@ -311,26 +275,17 @@ const btnHandler = function () {
         newMouseOver(parentEl, elClass, overBtnClass);
     })
 
-    // listenMouseOver(overMainBtnClass, allMainBtns);
-    // listenMouseOver(overLvlBtnClass, lvlBtns);
-    // listenMouseOver(overExitBtnClass, [exitButton]);
     showHideOnClick(newGameBtn, lvlContainer);
     showHideRanking(rankListBtn, tableContainer);
-    // chosenAnswer(chosenAnswerBtn, allAnswerBtns)
+
     for (let i = 0; i < lvlBtns.length; i++) {
         showOnClick(lvlBtns[i], modalContainer);
     }
-    hideOnClick(exitButton, modalContainer);
+    exitOnClick(exitButton, modalContainer);
     lisenCheckAnswerBtn();
 }
 
-
-
-
-// const checkAnswer = function () {
-//
-// }
-
+/////////////////////////////////////////////////////////////////////////////////////////////
 // main
 function initGame() {
 

@@ -55,12 +55,3 @@ def save_user_points(cursor: RealDictCursor, name, points):
     }
     cursor.execute(query, param)
 
-#
-# @connection.connection_handler
-# def questions(cursor:RealDictCursor, lvl: int):
-#     cursor.execute("""
-#         SELECT *
-#         FROM questions
-#     """)
-#     return cursor.fetchall()
-

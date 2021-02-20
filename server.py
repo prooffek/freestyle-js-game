@@ -1,5 +1,5 @@
 from flask import Flask, request, render_template, redirect, url_for
-import data_manager, random, copy, json
+import data_manager, random, copy
 NUMBER_OF_QUESTIONS = 3
 LIST_OF_KEYS = ["good_answer", "false_answer1", "false_answer2", "false_answer3"]
 LEVELS = [1, 2, 3]
@@ -8,8 +8,6 @@ app = Flask(__name__)
 
 if __name__ == "__main__":
     app.run(debug=True)
-
-# lvl1 = [{pytani1}, {pytanie2}, {pytanie3}]
 
 
 @app.route('/')
@@ -26,7 +24,6 @@ def create_list(lvlNum):
     questions_num = len(questions)
     all_data = []
     single_qa = {}
-    # for i in range(0, NUMBER_OF_QUESTIONS):
     for i in range(0, questions_num):
         question_id = questions[i]["id"]
         single_qa["content"] = questions[i]["question"]
@@ -60,16 +57,6 @@ def add_score_post():
     except:
         user_score = request.form["user-score"]
         return render_template("add-score.html", user_score=user_score)
-
-
-
-# @app.route('/add-score', methods=["POST"])
-# def add_score_post():
-#     user_name = request.form['name']
-#     user_points = request.form['score']
-#     data_manager.save_user_points(user_name, user_points)
-#     print("a")
-#     return redirect(url_for('index'))
 
 
 def create_ranking():

@@ -41,18 +41,11 @@
         </div>
     </menu>
 
-{#    <main class="modal hidden">#}
-        {% include "questions.html" %}
-{#    </main>#}
+    {% include "questions.html" %}
 
     <div class="blur-background hidden" data-correct="whatever"></div>
 
     <script type="text/javascript" src="/static/game.js"></script>
-{#    <script type="text/javascript" src="/static/main.js"></script>#}
-{#    <script type="text/javascript" src="/static/questions_handlers.js"></script>#}
-{#    <script type="text/javascript" src="/static/util.js"></script>#}
-{#    <script type="text/javascript" src="/static/listeners.js"></script>#}
-{#    <script type="text/javascript" src="/static/variables.js"></script>#}
     <script type="text/javascript">
         const lvl1 = {{ questions_lvl1|tojson }}
         const lvl2 = {{ questions_lvl2|tojson }}
